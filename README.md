@@ -5,8 +5,8 @@ A polished, responsive portfolio website built with Streamlit.
 ## Personalize it
 
 Open `profile_data.py` and replace the placeholder profile, projects, experience,
-contact details, and links. The page layout and visual design live in `app.py`.
-`streamlit_app.py` is the deployment entry point.
+contact details and links. The page layout, visual design, and deployment entry
+point live in `streamlit_app.py`. `app.py` is retained as a compatible copy.
 
 ## Run locally
 
