@@ -1,25 +1,24 @@
-# 🎈 Blank app template
+# Streamlit portfolio
 
-A simple Streamlit app template for you to modify!
+A polished, responsive portfolio website built with Streamlit.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+## Personalize it
 
-### How to run it on your own machine
+Open `profile_data.py` and replace the placeholder profile, projects, experience,
+contact details, and links. The page layout and visual design live in `app.py`.
+`streamlit_app.py` is the deployment entry point.
 
-Prerequisite: install `uv` if you don't already have it.
+## Run locally
 
+```powershell
+py -m pip install -r requirements.txt
+py -m streamlit run streamlit_app.py
 ```
-$ curl -LsSf https://astral.sh/uv/install.sh | sh
-```
 
-1. Sync the dependencies
+Streamlit will print a local address, usually `http://localhost:8501`.
 
-   ```
-   $ uv sync
-   ```
+## Publish
 
-2. Run the app
-
-   ```
-   $ uv run streamlit run streamlit_app.py
-   ```
+Push these files to a GitHub repository, then connect the repository at
+[share.streamlit.io](https://share.streamlit.io). Choose `streamlit_app.py` as
+the entry point.

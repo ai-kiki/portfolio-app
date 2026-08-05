@@ -1,6 +1,7 @@
-import streamlit as st
+"""Streamlit Community Cloud entry point for the portfolio."""
 
-st.title("🎈 My new app")
-st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
-)
+from pathlib import Path
+import runpy
+
+
+runpy.run_path(str(Path(__file__).with_name("app.py")), run_name="__main__")
