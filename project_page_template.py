@@ -265,18 +265,19 @@ def _inject_page_styles() -> None:
     )
 
 
-def render_project_page(key: str) -> None:
+def render_project_page(key: str, *, configure_page: bool = True) -> None:
     item_index = next(
         index for index, item in enumerate(PROJECT_PAGE_CONFIGS) if item["key"] == key
     )
     item = PROJECT_PAGE_CONFIGS[item_index]
 
-    st.set_page_config(
-        page_title=f"{item['title']} · {PROFILE['name']}",
-        page_icon="✦",
-        layout="wide",
-        initial_sidebar_state="expanded",
-    )
+    if configure_page:
+        st.set_page_config(
+            page_title=f"{item['title']} · {PROFILE['name']}",
+            page_icon="✦",
+            layout="wide",
+            initial_sidebar_state="expanded",
+        )
     _inject_page_styles()
 
     st.markdown(
@@ -291,7 +292,10 @@ def render_project_page(key: str) -> None:
         """,
         unsafe_allow_html=True,
     )
-    st.page_link("streamlit_app.py", label="Back to portfolio")
+    st.markdown(
+        '<a href="/" target="_self">← Back to portfolio</a>',
+        unsafe_allow_html=True,
+    )
     st.markdown(
         f"""
         <div class="project-eyebrow">{_safe(item['eyebrow'])}</div>
@@ -331,13 +335,18 @@ def render_project_page(key: str) -> None:
     if item_index > 0:
         previous_item = PROJECT_PAGE_CONFIGS[item_index - 1]
         with nav_columns[0]:
-            st.page_link(
-                str(previous_item["file"]),
-                label=f"Previous: {previous_item['title']}",
+            st.markdown(
+                f'<a href="/?project={_safe(previous_item["key"])}" target="_self">'
+                f'← Previous: {_safe(previous_item["title"])}</a>',
+                unsafe_allow_html=True,
             )
     if item_index < len(PROJECT_PAGE_CONFIGS) - 1:
         next_item = PROJECT_PAGE_CONFIGS[item_index + 1]
         with nav_columns[1]:
-            st.page_link(str(next_item["file"]), label=f"Next: {next_item['title']}")
+            st.markdown(
+                f'<a href="/?project={_safe(next_item["key"])}" target="_self">'
+                f'Next: {_safe(next_item["title"])} →</a>',
+                unsafe_allow_html=True,
+            )
 
     st.caption(f"Questions or opportunities: {CONTACT['email']}")

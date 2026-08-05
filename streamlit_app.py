@@ -13,7 +13,7 @@ from profile_data import (
     SKILLS,
     SOCIAL_LINKS,
 )
-from project_page_template import PROJECT_PAGE_CONFIGS
+from project_page_template import PROJECT_PAGE_CONFIGS, render_project_page
 
 
 st.set_page_config(
@@ -22,6 +22,12 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+
+active_project = st.query_params.get("project")
+project_keys = {str(item["key"]) for item in PROJECT_PAGE_CONFIGS}
+if active_project in project_keys:
+    render_project_page(str(active_project), configure_page=False)
+    st.stop()
 
 
 def safe(value: str) -> str:
@@ -541,11 +547,10 @@ def render_experience(item: dict[str, str]) -> None:
 
 
 def render_portfolio_directory_item(item: dict[str, object], index: int) -> None:
-    file_name = str(item["file"]).rsplit("/", 1)[-1]
-    page_slug = file_name.removesuffix(".py").split("_", 1)[1]
+    project_key = safe(str(item["key"]))
     st.markdown(
         f"""
-        <a class="portfolio-directory-card" href="/{safe(page_slug)}" target="_self">
+        <a class="portfolio-directory-card" href="/?project={project_key}" target="_self">
             <div class="directory-index">PROJECT {index:02d}</div>
             <h3>{safe(str(item["title"]))}</h3>
             <p>{safe(str(item["summary"]))}</p>
