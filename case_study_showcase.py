@@ -15,6 +15,7 @@ _ICON_PATHS = {
     "arrow": '<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>',
     "briefcase": '<rect width="18" height="14" x="3" y="7" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M12 12v.01"/>',
     "calendar": '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>',
+    "car": '<path d="m5 17-1 2"/><path d="m19 17 1 2"/><path d="M5 9l2-4h10l2 4"/><path d="M3 12a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v5H3v-5Z"/><path d="M7 13h.01"/><path d="M17 13h.01"/>',
     "chart": '<path d="M3 3v18h18"/><path d="m7 16 4-5 4 3 5-7"/>',
     "check": '<path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="m9 11 3 3L22 4"/>',
     "database": '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/>',
@@ -148,6 +149,36 @@ _BASE_STYLES = """
 .cs-flow article > div svg { height: 35px; width: 35px; }
 .cs-flow article > div span { font-size: 1.05rem; font-weight: 800; }
 .cs-flow article p { color: var(--muted); font-size: .94rem; line-height: 1.48; margin: .7rem 0 0; }
+.auto-diagnostic-flow { align-items: stretch; display: grid; gap: .75rem; grid-template-columns: 1fr 36px 1fr; }
+.auto-diagnostic-flow > article { background: var(--bg); border: 1px solid var(--line); border-radius: 13px; min-height: 185px; padding: 1.2rem; }
+.auto-diagnostic-flow > svg { align-self: center; color: var(--accent); height: 27px; width: 27px; }
+.auto-diagnostic-flow article > div { align-items: center; color: var(--accent); display: flex; gap: .65rem; }
+.auto-diagnostic-flow article > div svg { height: 31px; width: 31px; }
+.auto-diagnostic-flow article > div strong { font-size: 1.08rem; }
+.auto-diagnostic-flow article p { color: var(--muted); font-size: .94rem; line-height: 1.48; margin: .9rem 0; }
+.auto-diagnostic-flow article > span { color: var(--accent); font-size: .82rem; font-weight: 800; }
+.auto-performance-row { align-items: stretch; display: grid; gap: .8rem; grid-template-columns: 1.3fr .7fr; }
+.auto-vdp-compare { align-items: center; background: rgba(255,255,255,.075); border: 1px solid rgba(255,255,255,.15); border-radius: 13px; display: grid; gap: 1rem; grid-template-columns: 1fr 34px 1fr; padding: 1.25rem; }
+.auto-vdp-compare > svg { color: var(--highlight); height: 27px; width: 27px; }
+.auto-vdp-compare span, .auto-vdp-compare small { display: block; }
+.auto-vdp-compare span { color: var(--highlight); font-size: .82rem; font-weight: 800; text-transform: uppercase; }
+.auto-vdp-compare strong { display: block; font-family: "Manrope",sans-serif; font-size: 3rem; margin: .3rem 0; }
+.auto-vdp-compare small { color: var(--hero-copy); font-size: .85rem; }
+.auto-vdp-compare i { background: rgba(255,255,255,.14); border-radius: 999px; display: block; height: 11px; margin-top: .8rem; overflow: hidden; }
+.auto-vdp-compare b { background: linear-gradient(90deg,var(--accent),var(--highlight)); border-radius: inherit; display: block; height: 100%; }
+.auto-lift { align-items: center; background: var(--accent); border-radius: 13px; display: flex; flex-direction: column; justify-content: center; min-height: 210px; padding: 1.2rem; text-align: center; }
+.auto-lift svg { height: 34px; width: 34px; }
+.auto-lift strong { font-family: "Manrope",sans-serif; font-size: 3.2rem; line-height: 1; margin-top: .45rem; }
+.auto-lift span { font-size: 1rem; font-weight: 800; }
+.auto-lift small { color: rgba(255,255,255,.84); margin-top: .45rem; }
+.auto-timeline-row { align-items: stretch; display: grid; gap: .55rem; grid-template-columns: 1fr 25px 1fr 25px 1fr 25px 1fr; }
+.auto-timeline-row > article { background: var(--bg); border-radius: 12px; min-height: 145px; padding: 1rem; }
+.auto-timeline-row > svg { align-self: center; color: var(--accent); height: 23px; width: 23px; }
+.auto-timeline-row article span { color: var(--accent); display: block; font-size: .75rem; font-weight: 850; text-transform: uppercase; }
+.auto-timeline-row article strong { display: block; font-family: "Manrope",sans-serif; font-size: 1.5rem; margin-top: .7rem; }
+.auto-timeline-row article p { color: var(--muted); font-size: .86rem; line-height: 1.4; margin: .35rem 0 0; }
+.auto-timeline-row article:last-child { background: var(--accent); color: white; }
+.auto-timeline-row article:last-child span, .auto-timeline-row article:last-child p { color: white; }
 .cs-market { align-items: center; display: grid; gap: 1.2rem; grid-template-columns: .75fr 48px 1.25fr; }
 .cs-market > svg { color: var(--accent); height: 34px; justify-self: center; width: 34px; }
 .cs-market-origin { align-items: center; background: var(--accent-gradient); border-radius: var(--card-radius); color: #fff; display: flex; flex-direction: column; justify-content: center; min-height: 145px; padding: 1.25rem; text-align: center; }
@@ -187,7 +218,9 @@ _BASE_STYLES = """
   .cs-hero h1 { font-size: 2.9rem; }
   .cs-kpis, .cs-steps, .cs-chip-grid, .cs-channel-grid, .cs-measurement, .cs-market-destinations, .cs-capabilities { grid-template-columns: 1fr; }
   .cs-audience-layout, .cs-flow, .cs-market { grid-template-columns: 1fr; }
-  .cs-flow > svg, .cs-market > svg { justify-self: center; transform: rotate(90deg); }
+  .cs-flow > svg, .cs-market > svg, .auto-diagnostic-flow > svg, .auto-timeline-row > svg { justify-self: center; transform: rotate(90deg); }
+  .auto-diagnostic-flow, .auto-performance-row, .auto-vdp-compare, .auto-timeline-row { grid-template-columns: 1fr; }
+  .auto-vdp-compare > svg { justify-self: center; transform: rotate(90deg); }
   .cs-steps > div { min-height: 0; }
   .cs-bars > div { grid-template-columns: 112px 1fr; }
   .cs-bars strong { display: none; }
@@ -215,11 +248,12 @@ _GALLERY_STYLES = """
 .gallery-eyebrow { color:#ff6b4a; font-size:.78rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
 .gallery h1 { color:#13231f !important; font-family:"Manrope",sans-serif !important; font-size:clamp(3rem,7vw,6rem); font-weight:800; letter-spacing:-.07em; line-height:.94; margin:1rem 0 1.35rem; }
 .gallery-intro { color:#60706b; font-size:1.14rem; line-height:1.7; max-width:760px; }
-.gallery-grid { display:grid; gap:1rem; grid-template-columns:repeat(2,1fr); margin-top:3rem; }
+.gallery-grid { display:grid; gap:1rem; grid-template-columns:repeat(3,1fr); margin-top:3rem; }
 .gallery-card { background:white; border:1px solid rgba(19,35,31,.12); border-radius:26px; box-shadow:0 16px 50px rgba(19,35,31,.07); color:inherit !important; display:block; min-height:480px; overflow:hidden; padding:2rem; position:relative; text-decoration:none !important; transition:transform .2s ease,box-shadow .2s ease; }
 .gallery-card:hover { box-shadow:0 22px 65px rgba(19,35,31,.13); transform:translateY(-5px); }
 .gallery-card.health { --c:#2d7691; --d:#123e4b; --s:#dcebed; }
 .gallery-card.tech { --c:#6d39db; --d:#0b1f3a; --s:#e9f0ff; }
+.gallery-card.auto { --c:#f07832; --d:#1b262b; --s:#e3e9eb; }
 .gallery-card::before { background:var(--d); content:""; height:11px; inset:0 0 auto; position:absolute; }
 .gallery-card-head { align-items:center; display:flex; justify-content:space-between; margin-top:.4rem; }
 .gallery-category { color:var(--c); font-size:.78rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
@@ -232,6 +266,7 @@ _GALLERY_STYLES = """
 .gallery-tags span { background:var(--s); border-radius:999px; color:var(--d); font-size:.77rem; font-weight:700; padding:.43rem .68rem; }
 .gallery-open { bottom:1.8rem; color:var(--d); font-size:.88rem; font-weight:800; position:absolute; }
 .gallery-note { border-top:1px solid rgba(19,35,31,.12); color:#60706b; font-size:.9rem; line-height:1.6; margin-top:3.5rem; padding-top:1.2rem; }
+@media(max-width:980px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:760px){.block-container{padding:1.2rem 1rem 3rem}.gallery-top{margin-bottom:3.5rem}.gallery-status{display:none}.gallery-grid{grid-template-columns:1fr}.gallery-card{min-height:450px}}
 </style>
 """
@@ -240,6 +275,7 @@ _GALLERY_STYLES = """
 def _render_gallery() -> None:
     health_icon = _icon("target")
     tech_icon = _icon("network")
+    auto_icon = _icon("car")
     st.markdown(
         _GALLERY_STYLES
         + dedent(f"""
@@ -266,6 +302,14 @@ def _render_gallery() -> None:
               <h2>Increase in booked appointments</h2>
               <p>A seven-month regional campaign used current intent signals and disciplined geographic allocation to grow cloud-services and cybersecurity demand.</p>
               <div class="gallery-tags"><span>Market strategy</span><span>DV360</span><span>YouTube</span><span>Streaming / CTV</span></div>
+              <span class="gallery-open">Open case study &rarr;</span>
+            </a>
+            <a class="gallery-card auto" href="/Case_Studies?case=used-car-sales" target="_self">
+              <div class="gallery-card-head"><span class="gallery-category">Automotive</span><span class="gallery-icon">{auto_icon}</span></div>
+              <div class="gallery-metric">88%</div>
+              <h2>Of available inventory sold in 52 days</h2>
+              <p>A focused VIN Marketing strategy combined vehicle-level analysis, stronger VDPs, and disciplined budget acceleration to move aging inventory.</p>
+              <div class="gallery-tags"><span>VIN strategy</span><span>VDP optimization</span><span>Budget pacing</span><span>Client counsel</span></div>
               <span class="gallery-open">Open case study &rarr;</span>
             </a>
           </section>
@@ -387,6 +431,66 @@ def _render_tech() -> None:
     )
 
 
+def _render_auto() -> None:
+    def bubble(name: str) -> str:
+        return f'<span class="cs-icon-bubble">{_icon(name)}</span>'
+
+    contributions = [
+        "Overall strategy", "Inventory analysis", "Channel prioritization",
+        "VDP conversion strategy", "Pricing counsel", "Budget acceleration",
+        "Reporting & analytics", "Client communication",
+    ]
+    contribution_html = "".join(f"<span>{_safe(item)}</span>" for item in contributions)
+    st.markdown(
+        _BASE_STYLES
+        + dedent(f"""
+        <div class="cs-shell" style="--bg:#f2f0eb;--surface:#fffdfa;--soft:#e3e9eb;--ink:#20292d;--muted:#657075;--line:#cfd7d9;--deep:#1b262b;--accent:#f07832;--highlight:#ffb44a;--glow:#f07832;--hero-copy:#d2dde0;--hero-muted:#c7d3d6;--shadow:rgba(31,42,46,.07);--accent-gradient:#f07832;--bar-gradient:linear-gradient(90deg,#f07832,#ffb44a);--hero-radius:26px 8px 26px 8px;--card-radius:18px 6px 18px 6px;--section-radius:22px 7px 22px 7px;--icon-radius:50%;--kpi-count:4;--channel-count:3;--ring:88%;">
+          <header class="cs-sitebar"><a class="cs-sitebrand" href="/Case_Studies" target="_self"><i>CS</i> Portfolio case study</a><span class="cs-category">Automotive</span></header>
+          <section class="cs-wrap">
+            <section class="cs-hero">
+              <div class="cs-hero-copy"><span class="cs-kicker">Platform-verified inventory outcome</span><h1><em>88%</em> of available inventory sold in 52 days</h1><p>A focused VIN Marketing strategy combined vehicle-level signals, VDP improvements, and budget acceleration to move aging used-car inventory despite intense competition and a limited budget.</p></div>
+              <div class="cs-hero-metric"><div class="cs-ring"><div><strong>88%</strong><span>sell-through</span></div></div><small>Only three vehicles remained</small></div>
+            </section>
+            <section class="cs-kpis">
+              <article>{bubble('target')}<div><strong>46%</strong><p>Sold within 30 days</p><small>Early inventory momentum</small></div></article>
+              <article>{bubble('growth')}<div><strong>543%</strong><p>Increase in daily VDP views</p><small>Equal 10-day periods</small></div></article>
+              <article>{bubble('chart')}<div><strong>6.4&times;</strong><p>Previous VDP average</p><small>0.44 before &rarr; 2.83 after</small></div></article>
+              <article>{bubble('calendar')}<div><strong>60 &rarr; 52</strong><p>Planned vs. actual days</p><small>Budget accelerated near close</small></div></article>
+            </section>
+            <section class="cs-grid-2">
+              <article class="cs-card"><div class="cs-card-heading"><span>{_icon('alert')}</span><div><small>The business pressure</small><h2>Move aging inventory before margin eroded</h2></div></div><div class="cs-list">
+                <div>{_icon('calendar')}<p><strong>Aging vehicles</strong><span>Inventory had remained unsold for more than 30 days.</span></p></div>
+                <div>{_icon('map')}<p><strong>17 nearby competitors</strong><span>Independent, new, certified-preowned, and used dealerships crowded the area.</span></p></div>
+                <div>{_icon('money')}<p><strong>Extremely limited budget</strong><span>The original multichannel idea narrowed to one focused tactic.</span></p></div>
+                <div>{_icon('growth')}<p><strong>Profit pressure</strong><span>Carrying and operating costs continued while inventory sat.</span></p></div>
+              </div></article>
+              <article class="cs-card"><div class="cs-card-heading"><span>{_icon('search')}</span><div><small>The diagnostic strategy</small><h2>Different signals required different answers</h2></div></div><div class="auto-diagnostic-flow">
+                <article><div>{_icon('mouse')}<strong>Low VDP activity</strong></div><p>The vehicle likely had a visibility or discoverability problem.</p><span>Increase qualified exposure</span></article>{_icon('arrow')}<article><div>{_icon('target')}<strong>Views without a sale</strong></div><p>The offer, pricing, urgency, or presentation needed closer review.</p><span>Strengthen the VDP and offer</span></article>
+              </div><p class="cs-note"><strong>Strategic counsel:</strong> I paired the media analysis with candid conversations about pricing, competition, and what the available budget could realistically achieve.</p></article>
+            </section>
+            <section class="cs-card cs-full"><div class="cs-card-heading"><span>{_icon('mouse')}</span><div><small>VDP conversion refresh</small><h2>Minor page improvements created stronger reasons to act</h2></div></div><div class="cs-chip-grid">
+              <div class="cs-chip">{_icon('play')}<strong>Walkaround video</strong></div><div class="cs-chip">{_icon('mouse')}<strong>Stronger CTA</strong></div><div class="cs-chip">{_icon('target')}<strong>Manager Special</strong></div><div class="cs-chip">{_icon('money')}<strong>Price Drop</strong></div><div class="cs-chip">{_icon('car')}<strong>Updated presentation</strong></div><div class="cs-chip">{_icon('check')}<strong>Changes implemented</strong></div>
+            </div></section>
+            <section class="cs-dark"><div class="cs-section-heading"><small>Engagement lift</small><h2>Vehicle pages gained measurable momentum</h2></div><div class="auto-performance-row">
+              <article class="auto-vdp-compare"><div><span>Before launch</span><strong>0.44</strong><small>average daily VDP views</small><i><b style="width:16%"></b></i></div>{_icon('arrow')}<div><span>After launch</span><strong>2.83</strong><small>average daily VDP views</small><i><b style="width:100%"></b></i></div></article>
+              <article class="auto-lift">{_icon('chart')}<strong>543%</strong><span>increase</span><small>6.4&times; the previous average</small></article>
+            </div><p style="color:var(--hero-copy);font-size:.86rem;margin:1rem 0 0;text-align:center;">Measured across comparable 10-day periods before and after launch.</p></section>
+            <section class="cs-card cs-full"><div class="cs-card-heading"><span>{_icon('chart')}</span><div><small>Campaign pacing</small><h2>Optimization followed the shrinking inventory</h2></div></div><div class="auto-timeline-row">
+              <article><span>Plan</span><strong>60 days</strong><p>Focused VIN Marketing launch</p></article>{_icon('arrow')}<article><span>Day 30</span><strong>46% sold</strong><p>Early sell-through momentum</p></article>{_icon('arrow')}<article><span>Final stretch</span><strong>3 remained</strong><p>Budget accelerated</p></article>{_icon('arrow')}<article><span>Day 52</span><strong>88% sold</strong><p>Campaign concluded early</p></article>
+            </div></section>
+            <section class="cs-card cs-full"><div class="cs-card-heading"><span>{_icon('shield')}</span><div><small>Measurement system</small><h2>Site activity and live inventory stayed connected</h2></div></div><div class="cs-flow">
+              <article><div>{_icon('mouse')}<span>Website pixel</span></div><p>Measured VDP and site activity</p></article>{_icon('arrow')}<article><div>{_icon('car')}<span>Live inventory</span></div><p>Reflected vehicle availability</p></article>{_icon('arrow')}<article><div>{_icon('check')}<span>Sold VINs</span></div><p>Verified sell-through results</p></article>
+            </div></section>
+            <section class="cs-bottom"><article class="cs-contribution"><div><small>My strategic contribution</small><h2>From aging inventory to focused sales momentum.</h2></div><div class="cs-capabilities">{contribution_html}</div></article><article class="cs-takeaway">{_icon('car')}<small>Strategic takeaway</small><p>With a constrained budget, focus matters more than channel count.</p><div class="cs-next"><p>The right inventory signals, stronger product pages, and disciplined optimization can turn aging inventory into measurable sales momentum.</p></div></article></section>
+            <p class="cs-disclosure">Client identity and selected identifying details have been modified. Sell-through, VDP activity, and inventory-status changes were measured through the VIN Marketing platform, website pixel, and live dealership inventory updates. The 543% increase and 6.4&times; multiplier are calculated from verified 0.44 and 2.83 averages across comparable 10-day periods.</p>
+            <a class="cs-back" href="/Case_Studies" target="_self">&larr; Return to all case studies</a>
+          </section>
+        </div>
+        """),
+        unsafe_allow_html=True,
+    )
+
+
 def render_case_studies() -> None:
     st.set_page_config(
         page_title="Campaign Case Studies | L.C. Felton",
@@ -399,5 +503,7 @@ def render_case_studies() -> None:
         _render_ent()
     elif selected == "cloud-services-cybersecurity":
         _render_tech()
+    elif selected == "used-car-sales":
+        _render_auto()
     else:
         _render_gallery()
