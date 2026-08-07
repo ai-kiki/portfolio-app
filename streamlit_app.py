@@ -547,10 +547,14 @@ def render_experience(item: dict[str, str]) -> None:
 
 
 def render_portfolio_directory_item(item: dict[str, object], index: int) -> None:
-    project_key = safe(str(item["key"]))
+    if item.get("href"):
+        destination = safe(str(item["href"]))
+    else:
+        project_key = safe(str(item["key"]))
+        destination = f"/?project={project_key}"
     st.markdown(
         f"""
-        <a class="portfolio-directory-card" href="/?project={project_key}" target="_self">
+        <a class="portfolio-directory-card" href="{destination}" target="_self">
             <div class="directory-index">PROJECT {index:02d}</div>
             <h3>{safe(str(item["title"]))}</h3>
             <p>{safe(str(item["summary"]))}</p>
@@ -649,8 +653,21 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-for row_start in range(0, len(PROJECT_PAGE_CONFIGS), 3):
-    row_items = PROJECT_PAGE_CONFIGS[row_start : row_start + 3]
+portfolio_directory_items = [
+    *PROJECT_PAGE_CONFIGS,
+    {
+        "key": "case-studies",
+        "href": "/Case_Studies",
+        "title": "Campaign Case Studies",
+        "summary": (
+            "A visual library of campaign strategies, audience decisions, channel "
+            "architecture, and measurable outcomes across multiple industries."
+        ),
+    },
+]
+
+for row_start in range(0, len(portfolio_directory_items), 3):
+    row_items = portfolio_directory_items[row_start : row_start + 3]
     columns = st.columns(3)
     for offset, item in enumerate(row_items):
         with columns[offset]:
