@@ -64,6 +64,8 @@ _BASE_STYLES = """
 .cs-sitebrand { align-items: center; color: var(--ink) !important; display: flex; font-size: .85rem; font-weight: 800; gap: .65rem; letter-spacing: .08em; text-decoration: none !important; text-transform: uppercase; }
 .cs-sitebrand i { align-items: center; background: var(--deep); border-radius: 50%; color: #fff; display: inline-flex; font-style: normal; height: 2.1rem; justify-content: center; width: 2.1rem; }
 .cs-category { color: var(--accent); font-family: "Manrope", sans-serif; font-size: clamp(1.25rem,2.4vw,1.8rem); font-weight: 700; }
+.cs-flight-row { align-items: center; color: var(--muted); display: flex; font-size: .7rem; font-weight: 850; gap: .55rem; justify-content: flex-end; letter-spacing: .07em; margin: .7rem .15rem 0; text-transform: uppercase; }
+.cs-flight-row strong { background: var(--soft); border: 1px solid var(--line); border-radius: 999px; color: var(--ink); padding: .38rem .62rem; }
 .cs-wrap { margin: 0 auto; max-width: 1180px; }
 .cs-hero { background: var(--deep); border-radius: var(--hero-radius); color: #fff; display: grid; gap: 2rem; grid-template-columns: 1.25fr .75fr; overflow: hidden; padding: clamp(2rem,5vw,4rem); position: relative; }
 .cs-hero::after { background: var(--glow); border-radius: 50%; content: ""; height: 320px; opacity: .13; position: absolute; right: -110px; top: -145px; width: 320px; }
@@ -307,7 +309,7 @@ def _render_gallery() -> None:
             <a class="gallery-card auto" href="/Case_Studies?case=used-car-sales" target="_self">
               <div class="gallery-card-head"><span class="gallery-category">Automotive</span><span class="gallery-icon">{auto_icon}</span></div>
               <div class="gallery-metric">88%</div>
-              <h2>Of available inventory sold in 52 days</h2>
+              <h2>Of available inventory sold in 62 days</h2>
               <p>A focused VIN Marketing strategy combined vehicle-level analysis, stronger VDPs, and disciplined budget acceleration to move aging inventory.</p>
               <div class="gallery-tags"><span>VIN strategy</span><span>VDP optimization</span><span>Budget pacing</span><span>Client counsel</span></div>
               <span class="gallery-open">Open case study &rarr;</span>
@@ -448,14 +450,15 @@ def _render_auto() -> None:
           <header class="cs-sitebar"><a class="cs-sitebrand" href="/Case_Studies" target="_self"><i>CS</i> Portfolio case study</a><span class="cs-category">Automotive</span></header>
           <section class="cs-wrap">
             <section class="cs-hero">
-              <div class="cs-hero-copy"><span class="cs-kicker">Platform-verified inventory outcome</span><h1><em>88%</em> of available inventory sold in 52 days</h1><p>A focused VIN Marketing strategy combined vehicle-level signals, VDP improvements, and budget acceleration to move aging used-car inventory despite intense competition and a limited budget.</p></div>
-              <div class="cs-hero-metric"><div class="cs-ring"><div><strong>88%</strong><span>sell-through</span></div></div><small>Only three vehicles remained</small></div>
+              <div class="cs-hero-copy"><span class="cs-kicker">Platform-verified inventory outcome</span><h1><em>88%</em> of available inventory sold in 62 days</h1><p>A focused VIN Marketing strategy combined vehicle-level signals, VDP improvements, and budget acceleration to move aging used-car inventory despite intense competition and a limited budget.</p></div>
+              <div class="cs-hero-metric"><div class="cs-ring"><div><strong>88%</strong><span>sell-through</span></div></div></div>
             </section>
+            <div class="cs-flight-row"><span>Campaign flight</span><strong>2019</strong></div>
             <section class="cs-kpis">
               <article>{bubble('target')}<div><strong>46%</strong><p>Sold within 30 days</p><small>Early inventory momentum</small></div></article>
               <article>{bubble('growth')}<div><strong>543%</strong><p>Increase in daily VDP views</p><small>Equal 10-day periods</small></div></article>
               <article>{bubble('chart')}<div><strong>6.4&times;</strong><p>Previous VDP average</p><small>0.44 before &rarr; 2.83 after</small></div></article>
-              <article>{bubble('calendar')}<div><strong>60 &rarr; 52</strong><p>Planned vs. actual days</p><small>Budget accelerated near close</small></div></article>
+              <article>{bubble('calendar')}<div><strong>75 &rarr; 62</strong><p>Planned vs. actual days</p><small>Budget accelerated near close</small></div></article>
             </section>
             <section class="cs-grid-2">
               <article class="cs-card"><div class="cs-card-heading"><span>{_icon('alert')}</span><div><small>The business pressure</small><h2>Move aging inventory before margin eroded</h2></div></div><div class="cs-list">
@@ -476,7 +479,7 @@ def _render_auto() -> None:
               <article class="auto-lift">{_icon('chart')}<strong>543%</strong><span>increase</span><small>6.4&times; the previous average</small></article>
             </div><p style="color:var(--hero-copy);font-size:.86rem;margin:1rem 0 0;text-align:center;">Measured across comparable 10-day periods before and after launch.</p></section>
             <section class="cs-card cs-full"><div class="cs-card-heading"><span>{_icon('chart')}</span><div><small>Campaign pacing</small><h2>Optimization followed the shrinking inventory</h2></div></div><div class="auto-timeline-row">
-              <article><span>Plan</span><strong>60 days</strong><p>Focused VIN Marketing launch</p></article>{_icon('arrow')}<article><span>Day 30</span><strong>46% sold</strong><p>Early sell-through momentum</p></article>{_icon('arrow')}<article><span>Final stretch</span><strong>3 remained</strong><p>Budget accelerated</p></article>{_icon('arrow')}<article><span>Day 52</span><strong>88% sold</strong><p>Campaign concluded early</p></article>
+              <article><span>Plan</span><strong>75 days</strong><p>Focused VIN Marketing launch</p></article>{_icon('arrow')}<article><span>Day 30</span><strong>46% sold</strong><p>Early sell-through momentum</p></article>{_icon('arrow')}<article><span>Final stretch</span><strong>3 remained</strong><p>Budget accelerated</p></article>{_icon('arrow')}<article><span>Day 62</span><strong>88% sold</strong><p>Campaign concluded early</p></article>
             </div></section>
             <section class="cs-card cs-full"><div class="cs-card-heading"><span>{_icon('shield')}</span><div><small>Measurement system</small><h2>Site activity and live inventory stayed connected</h2></div></div><div class="cs-flow">
               <article><div>{_icon('mouse')}<span>Website pixel</span></div><p>Measured VDP and site activity</p></article>{_icon('arrow')}<article><div>{_icon('car')}<span>Live inventory</span></div><p>Reflected vehicle availability</p></article>{_icon('arrow')}<article><div>{_icon('check')}<span>Sold VINs</span></div><p>Verified sell-through results</p></article>
