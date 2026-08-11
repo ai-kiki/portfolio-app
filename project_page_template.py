@@ -27,10 +27,10 @@ PROJECT_PAGE_CONFIGS = [
         "key": "process",
         "file": "pages/2_Process_Improvement_Case_Study.py",
         "eyebrow": "Operations, automation, and adoption",
-        "title": "Process Improvement Case Study",
+        "title": "Robotic Process Automation (RPA)",
         "summary": (
-            "A practical look at diagnosing operational friction, redesigning a workflow, "
-            "and helping people adopt a more scalable way of working."
+            "A multi-market team translated complex campaign rules into guided inputs, "
+            "automated workflows, and practical rollout support."
         ),
         "focus": [
             "The bottleneck, its root cause, and its effect on the team or customer.",
