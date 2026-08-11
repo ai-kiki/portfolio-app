@@ -1,4 +1,4 @@
-from project_page_template import render_project_page
+from process_improvement_showcase import render_process_improvement_case_study
 
 
-render_project_page("process")
+render_process_improvement_case_study()
