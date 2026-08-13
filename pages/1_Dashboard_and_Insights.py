@@ -1,4 +1,4 @@
-from project_page_template import render_project_page
+from dashboard_insights_showcase import render_dashboard_case_study
 
 
-render_project_page("dashboard")
+render_dashboard_case_study()
