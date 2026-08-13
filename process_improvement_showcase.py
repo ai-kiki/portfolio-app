@@ -123,6 +123,18 @@ _STYLES = """
 .io-paths strong { font-family:"Newsreader",Georgia,serif; font-size:1.58rem; }
 .io-paths p { color:#596b80; font-size:.95rem; line-height:1.55; margin:.7rem 0 0; }
 .io-paths .io-output p { color:#e4efff; }
+.io-highlights-arrow { color:var(--blue); font-size:2rem; font-weight:800; line-height:1; margin:1.35rem 0 .8rem; text-align:center; }
+.io-operational-highlights { background:white; border:1px solid #d7e0eb; padding:1.6rem; }
+.io-operational-highlights > span { color:#082651; display:block; font-size:1.08rem; font-weight:850; letter-spacing:.1em; margin-bottom:1.15rem; text-transform:uppercase; }
+.io-highlight-grid { display:grid; grid-template-columns:repeat(3,1fr); }
+.io-highlight-grid article { min-height:220px; padding:1.6rem; }
+.io-highlight-grid article:nth-child(1) { background:#dce8f4; }
+.io-highlight-grid article:nth-child(2) { background:#dff3ef; border-left:1px solid #a8c9d2; }
+.io-highlight-grid article:nth-child(3) { background:#edf0f6; border-left:1px solid #a8c9d2; }
+.io-highlight-icon { align-items:center; color:var(--blue); display:flex; height:36px; margin-bottom:1.15rem; }
+.io-highlight-icon svg { fill:none; height:30px; stroke:currentColor; stroke-linecap:round; stroke-linejoin:round; stroke-width:1.8; width:30px; }
+.io-highlight-grid h3 { color:#071c3b!important; font-family:"DM Sans",Arial,sans-serif!important; font-size:1.35rem; font-weight:800; line-height:1.15; margin:0 0 .8rem; }
+.io-highlight-grid p { color:#102d53; font-size:1rem; line-height:1.62; margin:0; }
 .io-training { background:#fff; display:grid; gap:2.4rem; grid-template-columns:1fr; }
 .io-training .io-heading { max-width:900px; }
 .io-training-media { align-items:stretch; display:grid; gap:1.3rem; grid-template-columns:minmax(0,1.45fr) minmax(260px,.75fr); }
@@ -145,7 +157,7 @@ _STYLES = """
 .io-disclosure { color:#76869a; font-size:.95rem; line-height:1.55; margin:0 auto .7rem; max-width:1000px; padding-top:2.4rem; text-align:center; }
 .io-back { color:var(--navy)!important; display:block; font-size:.94rem; font-weight:800; margin:1rem 0 0; text-align:center; text-decoration:none!important; }
 @media(max-width:920px){.io-meta{grid-template-columns:repeat(2,1fr)}.io-workflow{grid-template-columns:repeat(4,1fr)}.io-arrow{display:none}.io-contributions,.io-challenge-grid{grid-template-columns:repeat(2,1fr)}.io-reflection{grid-template-columns:1fr}}
-@media(max-width:700px){.block-container{padding:1rem .7rem 3rem}.io-category{display:none}.io-hero{min-height:650px}.io-hero img{bottom:0;height:42%;top:auto}.io-hero::after{background:linear-gradient(180deg,#fff 0 55%,rgba(255,255,255,.1) 82%)}.io-hero-copy{padding:3rem 1.5rem 18rem;width:100%}.io-hero h1{font-size:3.55rem}.io-summary-band{padding:1.3rem 1.5rem}.io-meta{grid-template-columns:1fr 1fr}.io-section{padding:3.5rem 1.35rem}.io-workflow,.io-contributions,.io-challenge-grid,.io-training,.io-training-media{grid-template-columns:1fr}.io-training-tags{grid-template-columns:1fr 1fr;min-height:260px}.io-step{height:auto;min-height:430px}.io-step p{min-height:auto}.io-paths{grid-template-columns:1fr;grid-template-rows:auto}.io-paths article:nth-child(1),.io-paths article:nth-child(2),.io-paths>i,.io-paths .io-output{grid-column:1;grid-row:auto}.io-paths>i{transform:rotate(90deg)}}
+@media(max-width:700px){.block-container{padding:1rem .7rem 3rem}.io-category{display:none}.io-hero{min-height:650px}.io-hero img{bottom:0;height:42%;top:auto}.io-hero::after{background:linear-gradient(180deg,#fff 0 55%,rgba(255,255,255,.1) 82%)}.io-hero-copy{padding:3rem 1.5rem 18rem;width:100%}.io-hero h1{font-size:3.55rem}.io-summary-band{padding:1.3rem 1.5rem}.io-meta{grid-template-columns:1fr 1fr}.io-section{padding:3.5rem 1.35rem}.io-workflow,.io-contributions,.io-challenge-grid,.io-training,.io-training-media,.io-highlight-grid{grid-template-columns:1fr}.io-training-tags{grid-template-columns:1fr 1fr;min-height:260px}.io-step{height:auto;min-height:430px}.io-step p{min-height:auto}.io-paths{grid-template-columns:1fr;grid-template-rows:auto}.io-paths article:nth-child(1),.io-paths article:nth-child(2),.io-paths>i,.io-paths .io-output{grid-column:1;grid-row:auto}.io-paths>i{transform:rotate(90deg)}.io-highlight-grid article{min-height:auto}.io-highlight-grid article:nth-child(2),.io-highlight-grid article:nth-child(3){border-left:0;border-top:1px solid #a8c9d2}}
 </style>
 """
 
@@ -242,6 +254,15 @@ def render_process_improvement_case_study() -> None:
                 <i>&rarr;</i>
                 <article class="io-output"><span>Shared automation layer</span><strong>Workflow-populated insertion order</strong><p>Both input paths fed the automation that validated requirements and populated the insertion order.</p></article>
               </div>
+              <div class="io-highlights-arrow" aria-hidden="true">&darr;</div>
+              <div class="io-operational-highlights">
+                <span>Operational highlights</span>
+                <div class="io-highlight-grid">
+                  <article><div class="io-highlight-icon"><svg viewBox="0 0 32 32"><path d="M16 3l10 4v7c0 7-4 12-10 15C10 26 6 21 6 14V7z"/><path d="M11 16l3 3 7-8"/></svg></div><h3>100% Gatekeeping</h3><p>Zero incomplete orders passed to execution because validation occurred at the point of entry.</p></article>
+                  <article><div class="io-highlight-icon"><svg viewBox="0 0 32 32"><path d="M5 8h9v7H5zM18 18h9v7h-9z"/><path d="M14 11h4c4 0 6 2 6 6v1M21 15l3 3 3-3"/></svg></div><h3>Direct-to-Build Handoff</h3><p>Automated branching replaced manual email triage and back-and-forth clarification.</p></article>
+                  <article><div class="io-highlight-icon"><svg viewBox="0 0 32 32"><circle cx="12" cy="11" r="4"/><circle cx="23" cy="13" r="3"/><path d="M4 27v-3c0-5 3-8 8-8s8 3 8 8v3M19 20c1-2 3-3 5-3 3 0 5 2 5 6v4"/></svg></div><h3>Full Regional Scope</h3><p>All regional Sales and Digital Support teams were onboarded through two-part video SOPs.</p></article>
+                </div>
+              </div>
             </section>
 
             <section class="io-section io-training">
@@ -250,9 +271,9 @@ def render_process_improvement_case_study() -> None:
             </section>
 
             <section class="io-reflection">
-              <article><span>Impact</span><h3>A faster, more controlled process</h3><p>The redesigned workflow gave users clearer input paths, reduced guesswork, and stopped incomplete or invalid orders before they reached execution teams. It also created a more consistent, controlled handoff from campaign setup to execution.</p></article>
-              <article><span>What I learned</span><h3>Business knowledge can become automation logic</h3><p>This was my first close look at triggers and workflow logic. It showed me that subject-matter expertise is essential when an automation must reflect real operational rules.</p></article>
-              <article><span>What I would revisit</span><h3>Redesign the system, not only the workflow</h3><p>Given the opportunity, I would evaluate replacing the legacy insertion-order experience instead of building automation around it, while retaining the validation logic that made the new process useful.</p></article>
+              <article><span>Impact</span><h3>A faster, more controlled process</h3><p>Shifted standard orders from manual email back-and-forth to a rule-validated automated workflow&mdash;preventing incomplete campaign requests from reaching execution.</p></article>
+              <article><span>Adoption &amp; support</span><h3>Adoption and exception support</h3><p>Onboarded regional Sales and Digital Support teams through role-specific training, while establishing a dedicated ticketing path for exceptions and uncommon campaign requirements.</p></article>
+              <article><span>Continuity &amp; recognition</span><h3>Business continuity and recognition</h3><p>Stabilized the automated workflow, documented the operating process, and supported its handoff for continued use across regional markets. The initiative demonstrated my ability to lead operational improvement and preceded my promotion to <strong>Ad Operations Manager</strong> shortly after launch.</p></article>
             </section>
           </main>
           <p class="io-disclosure">This was a collaborative corporate initiative. My title reflects my contribution as one of several peer business leads and my responsibility for adoption within my market; it does not imply sole ownership of the project.</p>
