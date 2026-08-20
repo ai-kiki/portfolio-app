@@ -6,6 +6,8 @@ from textwrap import dedent
 
 import streamlit as st
 
+from portfolio_navigation import render_portfolio_navigation
+
 
 def _hero_data_uri() -> str:
     image_path = Path(__file__).parent / "assets" / "teamwork-implementation-hero-option-b.png"
@@ -116,13 +118,15 @@ _STYLES = """
 """
 
 
-def render_teamwork_implementation_case_study() -> None:
-    st.set_page_config(
-        page_title="Teamwork Implementation | L.C. Felton",
-        page_icon="TW",
-        layout="wide",
-        initial_sidebar_state="expanded",
-    )
+def render_teamwork_implementation_case_study(*, configure_page: bool = True) -> None:
+    if configure_page:
+        st.set_page_config(
+            page_title="Teamwork Implementation | L.C. Felton",
+            page_icon="TW",
+            layout="wide",
+            initial_sidebar_state="expanded",
+        )
+    render_portfolio_navigation()
     hero = _hero_data_uri()
     markup = dedent(
         f"""

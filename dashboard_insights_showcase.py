@@ -6,6 +6,8 @@ from textwrap import dedent
 
 import streamlit as st
 
+from portfolio_navigation import render_portfolio_navigation
+
 
 def _hero_data_uri() -> str:
     image_path = Path(__file__).parent / "assets" / "client-performance-dashboard-hero-v2.png"
@@ -270,13 +272,15 @@ _STYLES = """
 """
 
 
-def render_dashboard_case_study() -> None:
-    st.set_page_config(
-        page_title="Client-Facing Performance Dashboard | L.C. Felton",
-        page_icon="PD",
-        layout="wide",
-        initial_sidebar_state="expanded",
-    )
+def render_dashboard_case_study(*, configure_page: bool = True) -> None:
+    if configure_page:
+        st.set_page_config(
+            page_title="Client-Facing Performance Dashboard | L.C. Felton",
+            page_icon="PD",
+            layout="wide",
+            initial_sidebar_state="expanded",
+        )
+    render_portfolio_navigation()
     hero = _hero_data_uri()
     st.markdown(
         _STYLES

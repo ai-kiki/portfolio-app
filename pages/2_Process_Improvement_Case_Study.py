@@ -1,4 +1,4 @@
 from process_improvement_showcase import render_process_improvement_case_study
 
 
-render_process_improvement_case_study()
+render_process_improvement_case_study(configure_page=False)

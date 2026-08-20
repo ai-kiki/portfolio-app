@@ -13,21 +13,7 @@ from profile_data import (
     SKILLS,
     SOCIAL_LINKS,
 )
-from project_page_template import PROJECT_PAGE_CONFIGS, render_project_page
-
-
-st.set_page_config(
-    page_title=f"{PROFILE['name']} · Portfolio",
-    page_icon="✦",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
-
-active_project = st.query_params.get("project")
-project_keys = {str(item["key"]) for item in PROJECT_PAGE_CONFIGS}
-if active_project in project_keys:
-    render_project_page(str(active_project), configure_page=False)
-    st.stop()
+from portfolio_navigation import render_portfolio_navigation
 
 
 def safe(value: str) -> str:
@@ -566,6 +552,7 @@ def render_portfolio_directory_item(item: dict[str, object], index: int) -> None
 
 
 inject_styles()
+render_portfolio_navigation()
 
 st.markdown(
     f"""
@@ -654,21 +641,47 @@ st.markdown(
 )
 
 portfolio_directory_items = [
-    *PROJECT_PAGE_CONFIGS,
     {
         "key": "case-studies",
         "href": "/Case_Studies",
-        "title": "Campaign Case Studies",
+        "title": "Case Studies",
         "summary": (
-            "A visual library of campaign strategies, audience decisions, channel "
-            "architecture, and measurable outcomes across multiple industries."
+            "Campaign strategies, audience decisions, channel architecture, and "
+            "measurable outcomes across healthcare, B2B technology, and automotive."
+        ),
+    },
+    {
+        "key": "marketing-operations",
+        "href": "/Marketing_Operations_and_Automation",
+        "title": "Marketing Operations & Automation",
+        "summary": (
+            "Reporting, workflow, and software implementation projects that made "
+            "complex marketing operations faster, clearer, and easier to maintain."
+        ),
+    },
+    {
+        "key": "tools-playbooks",
+        "href": "/Tools_Playbooks_and_Frameworks",
+        "title": "Tools, Playbooks & Frameworks",
+        "summary": (
+            "AI-assisted builders, practical playbooks, and decision frameworks that "
+            "turn good thinking into repeatable action."
+        ),
+    },
+    {
+        "key": "gtm-enablement",
+        "href": "/GTM_Strategy_and_Sales_Enablement",
+        "title": "GTM Strategy & Sales Enablement",
+        "summary": (
+            "Target-market strategy, product positioning, campaign planning, and "
+            "enablement that help teams take offers to market with confidence."
         ),
     },
 ]
 
-for row_start in range(0, len(portfolio_directory_items), 3):
-    row_items = portfolio_directory_items[row_start : row_start + 3]
-    columns = st.columns(3)
+for row_start in range(0, len(portfolio_directory_items), 2):
+    row_items = portfolio_directory_items[row_start : row_start + 2]
+    columns = st.columns(2)
     for offset, item in enumerate(row_items):
         with columns[offset]:
             render_portfolio_directory_item(item, row_start + offset + 1)

@@ -1,4 +1,4 @@
 from dashboard_insights_showcase import render_dashboard_case_study
 
 
-render_dashboard_case_study()
+render_dashboard_case_study(configure_page=False)

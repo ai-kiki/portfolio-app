@@ -7,6 +7,8 @@ from textwrap import dedent
 
 import streamlit as st
 
+from portfolio_navigation import render_portfolio_navigation
+
 
 def _safe(value: object) -> str:
     return html.escape(str(value))
@@ -170,13 +172,15 @@ _STYLES = """
 """
 
 
-def render_process_improvement_case_study() -> None:
-    st.set_page_config(
-        page_title="Robotic Process Automation (RPA) | L.C. Felton",
-        page_icon="IO",
-        layout="wide",
-        initial_sidebar_state="expanded",
-    )
+def render_process_improvement_case_study(*, configure_page: bool = True) -> None:
+    if configure_page:
+        st.set_page_config(
+            page_title="Robotic Process Automation (RPA) | L.C. Felton",
+            page_icon="IO",
+            layout="wide",
+            initial_sidebar_state="expanded",
+        )
+    render_portfolio_navigation()
     hero = _hero_data_uri()
     training_visual = _training_data_uri()
     st.markdown(

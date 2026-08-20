@@ -1,0 +1,4 @@
+from portfolio_hubs import render_marketing_operations_hub
+
+
+render_marketing_operations_hub()

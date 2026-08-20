@@ -5,6 +5,8 @@ from textwrap import dedent
 
 import streamlit as st
 
+from portfolio_navigation import render_portfolio_navigation
+
 
 def _safe(value: object) -> str:
     return html.escape(str(value))
@@ -494,13 +496,15 @@ def _render_auto() -> None:
     )
 
 
-def render_case_studies() -> None:
-    st.set_page_config(
-        page_title="Campaign Case Studies | L.C. Felton",
-        page_icon="CS",
-        layout="wide",
-        initial_sidebar_state="expanded",
-    )
+def render_case_studies(*, configure_page: bool = True) -> None:
+    if configure_page:
+        st.set_page_config(
+            page_title="Campaign Case Studies | L.C. Felton",
+            page_icon="CS",
+            layout="wide",
+            initial_sidebar_state="expanded",
+        )
+    render_portfolio_navigation()
     selected = str(st.query_params.get("case", "")).strip()
     if selected == "ent-physician":
         _render_ent()
