@@ -112,7 +112,7 @@ def render_marketing_operations_hub() -> None:
         ("blue", "Client-Facing Performance Dashboard", "A Looker Studio reporting system that reduced a weekly four-to-six-hour refresh process to 15–20 minutes while giving hospital stakeholders clearer, self-service campaign visibility.", "/Dashboard_and_Insights", "View case study"),
         ("teal", "Automated Insertion Order Workflow", "A guided, rule-validated order process that replaced fragmented email handoffs, prevented incomplete requests from reaching execution, and supported multi-market adoption.", "/Process_Improvement_Case_Study", "View case study"),
         ("violet", "Teamwork Project Management Rollout", "A company-wide project management software implementation that standardized campaign intake, task ownership, communication, and status visibility for sales and support teams.", "/Teamwork_Implementation_Case_Study", "View case study"),
-        ("coral", "Power BI Reporting Automation", "A reporting transformation that shortened client-ready recap turnaround from 10–12 business days to 3–5 days without adding headcount.", None, "Case study in development"),
+        ("coral", "Power BI Reporting Automation", "A 33-page reporting system that supported 50–75 monthly client reports, returned ownership to the regional team, and reduced client-ready turnaround from two-to-three weeks to 3–5 days.", "/Power_BI_Reporting_Automation", "View case study"),
     ]
     columns = st.columns(2)
     for index, card in enumerate(cards, start=1):

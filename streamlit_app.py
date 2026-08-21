@@ -55,6 +55,11 @@ pages = [
         title="Teamwork Project Management Rollout",
         url_path="Teamwork_Implementation_Case_Study",
     ),
+    st.Page(
+        "pages/4_Power_BI_Reporting_Automation.py",
+        title="Power BI Reporting Automation",
+        url_path="Power_BI_Reporting_Automation",
+    ),
 ]
 
 

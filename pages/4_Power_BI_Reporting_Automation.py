@@ -1,0 +1,4 @@
+from power_bi_reporting_showcase import render_power_bi_case_study
+
+
+render_power_bi_case_study(configure_page=False)
