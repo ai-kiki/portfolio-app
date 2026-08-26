@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import streamlit as st
 
-
+# Deployment refresh: load the August 2026 GTM case-study routes and assets.
 
 st.set_page_config(
     page_title="L.C. Felton · Portfolio",
