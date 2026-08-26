@@ -4,6 +4,7 @@ import html
 
 import streamlit as st
 
+from gtm_case_study_showcase import render_youtube_tv_case_study
 from portfolio_navigation import render_portfolio_navigation
 
 
@@ -163,6 +164,10 @@ def render_tools_hub() -> None:
 
 
 def render_gtm_hub() -> None:
+    selected = str(st.query_params.get("case", "")).strip()
+    if selected == "youtube-tv-launch":
+        render_youtube_tv_case_study()
+        return
     render_portfolio_navigation()
     _hero(
         "Turning market insight into coordinated action",
@@ -176,7 +181,7 @@ def render_gtm_hub() -> None:
     )
     cards = [
         ("blue", "Product Portfolio & Target-Market Mapping", "A structured view of products, priority audiences, customer needs, and market opportunities used to guide positioning and campaign planning.", None, "Case study in development"),
-        ("teal", "Sales Enablement & Rep Readiness", "Training, talk tracks, tools, and adoption support designed to help sales teams understand an offer and use it credibly in customer conversations.", None, "Portfolio sample in development"),
+        ("teal", "YouTube TV Product Launch & Sales Readiness", "A launch plan, qualification process, SOP, client one-sheet, and training system that helped Sales navigate new inventory restrictions and supported successful campaign execution.", "/GTM_Strategy_and_Sales_Enablement?case=youtube-tv-launch", "View case study"),
         ("violet", "Pitch Decks & Training Materials", "Strategic narratives and learning materials that make complex products easier to explain, sell, launch, and support.", None, "Selected samples coming soon"),
         ("coral", "Campaign Planning & Launch Strategy", "Audience, messaging, channel, timing, and measurement decisions brought together in a coordinated plan for market activation.", None, "Case study in development"),
     ]
