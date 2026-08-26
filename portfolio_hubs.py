@@ -4,7 +4,11 @@ import html
 
 import streamlit as st
 
-from gtm_case_study_showcase import render_youtube_tv_case_study
+from gtm_case_study_showcase import (
+    render_streaming_video_decision_matrix_case_study,
+    render_twitch_sales_enablement_case_study,
+    render_youtube_tv_case_study,
+)
 from portfolio_navigation import render_portfolio_navigation
 
 
@@ -168,6 +172,12 @@ def render_gtm_hub() -> None:
     if selected == "youtube-tv-launch":
         render_youtube_tv_case_study()
         return
+    if selected == "twitch-sales-enablement":
+        render_twitch_sales_enablement_case_study()
+        return
+    if selected == "streaming-video-decision-matrix":
+        render_streaming_video_decision_matrix_case_study()
+        return
     render_portfolio_navigation()
     _hero(
         "Turning market insight into coordinated action",
@@ -180,9 +190,9 @@ def render_gtm_hub() -> None:
         "This collection brings together the market choices, launch structure, enablement, and storytelling that help a go-to-market plan move from intent to execution.",
     )
     cards = [
-        ("blue", "Product Portfolio & Target-Market Mapping", "A structured view of products, priority audiences, customer needs, and market opportunities used to guide positioning and campaign planning.", None, "Case study in development"),
+        ("blue", "Streaming & Video Portfolio Decision Matrix", "A guided decision framework that translated six overlapping platforms and their commercial, targeting, delivery, and attribution rules into clearer campaign recommendations.", "/GTM_Strategy_and_Sales_Enablement?case=streaming-video-decision-matrix", "View case study"),
         ("teal", "YouTube TV Product Launch & Sales Readiness", "A launch plan, qualification process, SOP, client one-sheet, and training system that helped Sales navigate new inventory restrictions and supported successful campaign execution.", "/GTM_Strategy_and_Sales_Enablement?case=youtube-tv-launch", "View case study"),
-        ("violet", "Pitch Decks & Training Materials", "Strategic narratives and learning materials that make complex products easier to explain, sell, launch, and support.", None, "Selected samples coming soon"),
+        ("violet", "Twitch Pitch & Experiential Sales Training", "An experiential training and advertiser-fit story that helped Sales understand an unfamiliar platform, carry it into client conversations, and activate six campaigns.", "/GTM_Strategy_and_Sales_Enablement?case=twitch-sales-enablement", "View case study"),
         ("coral", "Campaign Planning & Launch Strategy", "Audience, messaging, channel, timing, and measurement decisions brought together in a coordinated plan for market activation.", None, "Case study in development"),
     ]
     columns = st.columns(2)
