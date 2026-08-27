@@ -7,6 +7,7 @@ import streamlit as st
 from gtm_case_study_showcase import (
     render_streaming_video_decision_matrix_case_study,
     render_twitch_sales_enablement_case_study,
+    render_video_streaming_sales_playbook_case_study,
     render_youtube_tv_case_study,
 )
 from portfolio_navigation import render_portfolio_navigation
@@ -133,9 +134,9 @@ def render_marketing_operations_hub() -> None:
 def render_tools_hub() -> None:
     render_portfolio_navigation()
     _hero(
-        "Reusable thinking, made practical",
-        "Tools, Playbooks & Frameworks",
-        "Builders, decision tools, and repeatable frameworks designed to turn strategy into clear next steps—not documents that sit unused.",
+        "Human judgment, amplified by AI",
+        "AI Tools & Agentic Workflows",
+        "AI-powered tools and structured workflows designed to turn complex, repetitive work into guided, repeatable experiences.",
     )
     st.markdown(
         """
@@ -150,15 +151,13 @@ def render_tools_hub() -> None:
         unsafe_allow_html=True,
     )
     _section(
-        "Working toolkit",
-        "Systems that make good decisions easier to repeat.",
-        "This area will grow as additional builders, calculators, templates, and operating playbooks are completed.",
+        "Selected AI work",
+        "Systems that make complex work easier to repeat.",
+        "These projects show how I combine structured instructions, human review, and AI assistance to guide work from raw inputs to polished outcomes.",
     )
     cards = [
-        ("violet", "AI Case Study & Portfolio Builder", "A guided interview and drafting workflow that captures project evidence, identifies missing details, and converts raw experience into a recruiter-ready case study.", "https://project-story-case-builder.ai-kiki.chatgpt.site/#top", "Open builder"),
-        ("blue", "Campaign Allocation & Optimization Playbooks", "Practical decision frameworks for translating goals, audience signals, budget constraints, and performance data into focused media actions.", None, "Portfolio sample coming soon"),
-        ("teal", "AI Assistants & Agent Workflows", "Reusable instruction systems that help assistants follow a consistent process, preserve standards, and support research, drafting, quality checks, and publishing.", None, "Build story in development"),
-        ("coral", "Decision Frameworks & Calculators", "Compact tools for making complex choices more transparent—from prioritization and capacity planning to campaign recommendations and resource allocation.", None, "Collection in development"),
+        ("violet", "AI Case Study & Portfolio Builder", "A guided interview and drafting system that captures project evidence, identifies missing details, and transforms raw professional experience into a recruiter-ready case story.", "https://project-story-case-builder.ai-kiki.chatgpt.site/#top", "Open builder"),
+        ("teal", "AI Assistants & Agent Workflows", "Reusable instruction systems and coordinated AI workflows that support research, drafting, quality control, iterative review, visual development, and publishing.", None, "Case story in development"),
     ]
     columns = st.columns(2)
     for index, card in enumerate(cards, start=1):
@@ -178,6 +177,9 @@ def render_gtm_hub() -> None:
     if selected == "streaming-video-decision-matrix":
         render_streaming_video_decision_matrix_case_study()
         return
+    if selected == "video-streaming-sales-playbook":
+        render_video_streaming_sales_playbook_case_study()
+        return
     render_portfolio_navigation()
     _hero(
         "Turning market insight into coordinated action",
@@ -193,7 +195,7 @@ def render_gtm_hub() -> None:
         ("blue", "Streaming & Video Portfolio Decision Matrix", "A guided decision framework that translated six overlapping platforms and their commercial, targeting, delivery, and attribution rules into clearer campaign recommendations.", "/GTM_Strategy_and_Sales_Enablement?case=streaming-video-decision-matrix", "View case study"),
         ("teal", "YouTube TV Product Launch & Sales Readiness", "A launch plan, qualification process, SOP, client one-sheet, and training system that helped Sales navigate new inventory restrictions and supported successful campaign execution.", "/GTM_Strategy_and_Sales_Enablement?case=youtube-tv-launch", "View case study"),
         ("violet", "Twitch Pitch & Experiential Sales Training", "An experiential training and advertiser-fit story that helped Sales understand an unfamiliar platform, carry it into client conversations, and activate six campaigns.", "/GTM_Strategy_and_Sales_Enablement?case=twitch-sales-enablement", "View case study"),
-        ("coral", "Campaign Planning & Launch Strategy", "Audience, messaging, channel, timing, and measurement decisions brought together in a coordinated plan for market activation.", None, "Case study in development"),
+        ("coral", "Video & Streaming Sales Playbook", "A corporate Revenue Activation Plan resource that translated audience targeting, funnel stage, integrated media strategy, attribution, and execution requirements into practical sales guidance.", "/GTM_Strategy_and_Sales_Enablement?case=video-streaming-sales-playbook", "View case study"),
     ]
     columns = st.columns(2)
     for index, card in enumerate(cards, start=1):

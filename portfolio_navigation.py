@@ -23,7 +23,7 @@ _NAV_MARKUP = (
     '<a href="/" target="_self">Home</a>'
     '<a href="/Case_Studies" target="_self">Case Studies</a>'
     '<a href="/Marketing_Operations_and_Automation" target="_self">Marketing Operations &amp; Automation</a>'
-    '<a href="/Tools_Playbooks_and_Frameworks" target="_self">Tools, Playbooks &amp; Frameworks</a>'
+    '<a href="/Tools_Playbooks_and_Frameworks" target="_self">AI Tools &amp; Agentic Workflows</a>'
     '<a href="/GTM_Strategy_and_Sales_Enablement" target="_self">GTM Strategy &amp; Sales Enablement</a>'
     "</div></nav>"
 )

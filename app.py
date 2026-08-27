@@ -662,10 +662,10 @@ portfolio_directory_items = [
     {
         "key": "tools-playbooks",
         "href": "/Tools_Playbooks_and_Frameworks",
-        "title": "Tools, Playbooks & Frameworks",
+        "title": "AI Tools & Agentic Workflows",
         "summary": (
-            "AI-assisted builders, practical playbooks, and decision frameworks that "
-            "turn good thinking into repeatable action."
+            "AI-powered tools and structured agentic workflows that turn complex, "
+            "repetitive work into guided and repeatable experiences."
         ),
     },
     {

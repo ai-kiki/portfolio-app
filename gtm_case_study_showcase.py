@@ -144,6 +144,51 @@ _MATRIX_STYLES = """
 """
 
 
+_PLAYBOOK_STYLES = """
+<style>
+.playbook-case .cs-hero { gap:1.5rem; grid-template-columns:.72fr 1.28fr; padding:clamp(1.5rem,3.5vw,2.7rem); }
+.playbook-case .cs-hero h1 { font-size:clamp(1.75rem,3.2vw,2.65rem); letter-spacing:-.045em; line-height:1.04; margin:.7rem 0 .9rem; }
+.playbook-case .cs-hero-copy > p { font-size:clamp(.92rem,1.25vw,1.05rem); line-height:1.52; }
+.playbook-case .cs-kicker { font-size:clamp(1rem,1.55vw,1.25rem); letter-spacing:.055em; line-height:1.3; }
+.playbook-hero-visual { align-self:center; border:1px solid rgba(255,255,255,.2); border-radius:18px; box-shadow:0 22px 55px rgba(0,0,0,.24); margin:0; overflow:hidden; position:relative; z-index:1; }
+.playbook-hero-visual img { display:block; height:auto; width:100%; }
+.playbook-hero-visual figcaption { background:rgba(34,16,24,.94); color:var(--hero-muted); font-size:clamp(.92rem,1.25vw,1.05rem); line-height:1.52; padding:.8rem .95rem; }
+.playbook-meta-strip { background:var(--surface); border:1px solid var(--line); border-top:5px solid var(--accent); display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin:.8rem 0; }
+.playbook-meta-strip article { min-height:118px; padding:1.35rem 1.25rem; }
+.playbook-meta-strip article + article { border-left:1px solid var(--line); }
+.playbook-meta-strip span { color:var(--muted); display:block; font-size:.74rem; font-weight:850; letter-spacing:.13em; margin-bottom:.65rem; text-transform:uppercase; }
+.playbook-meta-strip strong { color:var(--ink); display:block; font-size:.98rem; line-height:1.45; }
+.playbook-topics { display:grid; gap:.7rem; grid-template-columns:repeat(2,1fr); }
+.playbook-topics article { background:var(--bg); border-radius:13px; min-height:145px; padding:1.15rem; }
+.playbook-topics svg { color:var(--accent); height:28px; width:28px; }
+.playbook-topics strong { display:block; font-size:1.03rem; margin:.65rem 0 .35rem; }
+.playbook-topics p { color:var(--muted); font-size:.92rem; line-height:1.45; margin:0; }
+.playbook-metrics { display:grid; gap:.7rem; grid-template-columns:repeat(4,1fr); }
+.playbook-metrics article { background:rgba(255,255,255,.075); border:1px solid rgba(255,255,255,.15); border-radius:13px; min-height:155px; padding:1.15rem; }
+.playbook-metrics strong { color:#fff; display:block; font-family:"Manrope",sans-serif; font-size:2rem; margin-bottom:.45rem; }
+.playbook-metrics span { color:var(--highlight); display:block; font-size:.77rem; font-weight:850; letter-spacing:.07em; margin-bottom:.45rem; text-transform:uppercase; }
+.playbook-metrics p { color:var(--hero-copy); font-size:.89rem; line-height:1.45; margin:0; }
+.playbook-actions { display:grid; gap:.7rem; grid-template-columns:repeat(5,1fr); }
+.playbook-actions article { border-top:3px solid var(--accent); min-height:205px; padding:1rem .85rem; }
+.playbook-actions article:nth-child(even) { border-color:var(--highlight); }
+.playbook-actions span { color:var(--accent); font-size:.75rem; font-weight:850; text-transform:uppercase; }
+.playbook-actions strong { display:block; font-size:1rem; margin:.65rem 0 .45rem; }
+.playbook-actions p { color:var(--muted); font-size:.88rem; line-height:1.45; margin:0; }
+.playbook-proof { align-items:center; display:grid; gap:1rem; grid-template-columns:.75fr 1.25fr; }
+.playbook-proof-mark { align-items:center; background:var(--accent-gradient); border-radius:16px; color:#fff; display:flex; flex-direction:column; justify-content:center; min-height:190px; padding:1.25rem; text-align:center; }
+.playbook-proof-mark svg { height:38px; width:38px; }
+.playbook-proof-mark strong { font-family:"Manrope",sans-serif; font-size:2.1rem; margin-top:.6rem; }
+.playbook-proof-mark span { font-size:.85rem; line-height:1.4; }
+.playbook-proof-copy p { color:var(--muted); font-size:.98rem; line-height:1.6; }
+.playbook-proof-copy ul { color:var(--muted); font-size:.94rem; line-height:1.5; margin:.55rem 0 0; padding-left:1.15rem; }
+.playbook-proof-copy li { margin:.32rem 0; }
+.playbook-disclosure { margin-top:1.8rem !important; }
+@media(max-width:980px){.playbook-case .cs-hero{grid-template-columns:1fr}.playbook-meta-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.playbook-meta-strip article:nth-child(3){border-left:0;border-top:1px solid var(--line)}.playbook-meta-strip article:nth-child(4){border-top:1px solid var(--line)}.playbook-actions{grid-template-columns:repeat(2,1fr)}.playbook-actions article:last-child{grid-column:1/-1}.playbook-metrics{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.playbook-meta-strip{grid-template-columns:1fr}.playbook-meta-strip article + article,.playbook-meta-strip article:nth-child(3){border-left:0;border-top:1px solid var(--line)}.playbook-topics,.playbook-proof,.playbook-metrics{grid-template-columns:1fr}.playbook-actions{grid-template-columns:1fr}.playbook-actions article:last-child{grid-column:auto}}
+</style>
+"""
+
+
 def render_youtube_tv_case_study() -> None:
     render_portfolio_navigation()
     hero_path = Path(__file__).resolve().parent / "assets" / "youtube-tv-launch-hero.png"
@@ -366,6 +411,82 @@ def render_streaming_video_decision_matrix_case_study() -> None:
             </section>
             <section class="cs-bottom"><article class="cs-contribution"><div><small>My strategic contribution</small><h2>I independently transformed institutional product knowledge into a usable sales decision system.</h2></div><div class="cs-capabilities">{contribution_html}</div></article><article class="cs-takeaway">{_icon('lightbulb')}<small>Strategic takeaway</small><p>When several products solve similar problems, the answer is not more documentation. Teams need decision architecture that makes the right tradeoffs easier to see.</p></article></section>
             <p class="cs-disclosure matrix-disclosure">Long-term adoption and campaign-performance metrics were not available because I was promoted shortly after rollout. Evidence is limited to feedback from the five-person testing group and early seller use.</p>
+            <a class="cs-back" href="/GTM_Strategy_and_Sales_Enablement" target="_self">&larr; Return to GTM Strategy &amp; Sales Enablement</a>
+          </section>
+        </div>
+        """),
+        unsafe_allow_html=True,
+    )
+
+
+def render_video_streaming_sales_playbook_case_study() -> None:
+    render_portfolio_navigation()
+    hero_path = Path(__file__).resolve().parent / "assets" / "video-streaming-sales-playbook-hero.png"
+    hero_src = "data:image/png;base64," + base64.b64encode(hero_path.read_bytes()).decode("ascii")
+    contributions = [
+        "Sales funnel stage",
+        "Audience strategy",
+        "Targeting options",
+        "Ideal-client guidance",
+        "Integrated media strategy",
+        "Attribution considerations",
+        "Execution requirements",
+        "Cross-functional development",
+        "Market rollout",
+    ]
+    contribution_html = "".join(f"<span>{item}</span>" for item in contributions)
+    st.markdown(
+        _BASE_STYLES
+        + _PLAYBOOK_STYLES
+        + dedent(f"""
+        <div class="cs-shell playbook-case" style="--bg:#f8f3f2;--surface:#ffffff;--soft:#f1e2df;--ink:#302035;--muted:#756774;--line:#e3d6d8;--deep:#28121f;--accent:#dc6756;--highlight:#58c1b8;--glow:#dc6756;--hero-copy:#f1e5e9;--hero-muted:#d7c2ca;--shadow:rgba(40,18,31,.09);--accent-gradient:linear-gradient(135deg,#dc6756,#a83f52);--bar-gradient:linear-gradient(90deg,#dc6756,#58c1b8);--hero-radius:26px 8px 26px 8px;--card-radius:18px 6px 18px 6px;--section-radius:22px 7px 22px 7px;--icon-radius:50%;--kpi-count:4;--channel-count:3;--ring:100%;">
+          <header class="cs-sitebar"><a class="cs-sitebrand" href="/GTM_Strategy_and_Sales_Enablement" target="_self"><i>GTM</i> Portfolio case study</a><span class="cs-category">Revenue Activation &amp; Sales Enablement</span></header>
+          <section class="cs-wrap">
+            <section class="cs-hero">
+              <div class="cs-hero-copy"><span class="cs-kicker">Revenue Activation Plan: Video &amp; Streaming Playbook · 2022–2023</span><h1>Building enterprise-wide fluency in <em>video and streaming</em></h1><p>As part of the corporate Revenue Activation Plan (RAP), I was selected for a six-person cross-functional team charged with creating the official Video &amp; Streaming Sales Playbook. As Marketing Manager, Digital Strategy, I developed content that helped sellers connect audience strategy, funnel stage, integrated media planning, attribution, and execution requirements to stronger client conversations.</p></div>
+              <figure class="playbook-hero-visual"><img src="{hero_src}" alt="Two leaders presenting a video and streaming sales playbook with a funnel and integrated media strategy diagram"><figcaption>Reconstructed concept: a product-agnostic playbook connected video and streaming to funnel stage, audience strategy, and the broader media mix.</figcaption></figure>
+            </section>
+            <section class="playbook-meta-strip">
+              <article><span>Project role</span><strong>Marketing Manager, Digital Strategy</strong></article>
+              <article><span>Initiative</span><strong>Corporate Revenue Activation Plan</strong></article>
+              <article><span>Primary audience</span><strong>Enterprise-Wide Sales Organization</strong></article>
+              <article><span>Core deliverables</span><strong>35-Slide Playbook &amp; 1-Hour Market Rollout</strong></article>
+            </section>
+            <section class="cs-grid-2">
+              <article class="cs-card"><div class="cs-card-heading"><span>{_icon('alert')}</span><div><small>The enablement need</small><h2>Sellers needed strategy—not another vendor catalog</h2></div></div><div class="cs-list">
+                <div>{_icon('briefcase')}<p><strong>A broad solution category</strong><span>Video and streaming could serve different objectives, audiences, and roles within a client's media plan.</span></p></div>
+                <div>{_icon('users')}<p><strong>Different levels of fluency</strong><span>Experienced sellers needed a refresher while newer sellers needed a dependable foundation.</span></p></div>
+                <div>{_icon('target')}<p><strong>Capabilities to remember</strong><span>Audience data, targeting, attribution, and execution requirements needed to remain accessible during planning.</span></p></div>
+                <div>{_icon('network')}<p><strong>Enterprise consistency</strong><span>Corporate leadership wanted an official resource with a uniform structure across RAP product playbooks.</span></p></div>
+              </div></article>
+              <article class="cs-card"><div class="cs-card-heading"><span>{_icon('lightbulb')}</span><div><small>My content contribution</small><h2>Give sellers practical guidance for planning video and streaming campaigns</h2></div></div><div class="playbook-topics">
+                <article>{_icon('network')}<strong>Sales funnel stage</strong><p>Positioned video and streaming primarily for awareness while showing how they support the customer journey.</p></article>
+                <article>{_icon('target')}<strong>Audience and targeting</strong><p>Covered first- and third-party audiences, segmentation, and major targeting options.</p></article>
+                <article>{_icon('monitor')}<strong>Integrated media strategy</strong><p>Positioned video and streaming as complementary tactics that could strengthen paid search, social media, linear television, email marketing, and other parts of the media plan.</p></article>
+                <article>{_icon('check')}<strong>Planning readiness</strong><p>Clarified attribution considerations and the inputs required to execute a campaign.</p></article>
+              </div></article>
+            </section>
+            <section class="cs-dark"><div class="cs-section-heading"><small>Corporate development and activation</small><h2>A standardized resource built for enterprise-wide reuse.</h2></div><div class="playbook-metrics">
+              <article><strong>6</strong><span>Project-team members</span><p>Sales, Digital Sales leadership, Strategy, and Marketing were represented.</p></article>
+              <article><strong>6 weeks</strong><span>Development cycle</span><p>The team shaped, reviewed, and finalized the official corporate resource.</p></article>
+              <article><strong>35</strong><span>PowerPoint slides</span><p>A comprehensive guide housed in a standardized RAP playbook template.</p></article>
+              <article><strong>1 hour</strong><span>Market rollout</span><p>The Digital Sales Manager and I co-presented the complete playbook.</p></article>
+            </div></section>
+            <section class="cs-card cs-full"><div class="cs-card-heading"><span>{_icon('network')}</span><div><small>How the work unfolded</small><h2>From corporate mandate to an official field resource</h2></div></div><div class="playbook-actions">
+              <article><span>01 · Align</span><strong>Join the RAP team</strong><p>I was selected for the cross-functional group responsible for the Video &amp; Streaming playbook.</p></article>
+              <article><span>02 · Define</span><strong>Shape the sales guidance</strong><p>I focused my content on funnel stage, audiences, targeting, integrated strategy, attribution, and execution.</p></article>
+              <article><span>03 · Build</span><strong>Author within the template</strong><p>I developed the assigned content inside the standardized design used across corporate RAP playbooks.</p></article>
+              <article><span>04 · Finalize</span><strong>Deliver the official resource</strong><p>The six-person team completed a 35-slide PowerPoint approved for enterprise-wide use.</p></article>
+              <article><span>05 · Activate</span><strong>Bring it to the market</strong><p>Following corporate communications, the Digital Sales Manager and I delivered a one-hour local rollout.</p></article>
+            </div><p class="cs-note">This sequence organizes the actions that occurred; it does not claim a formal methodology was used at the time.</p></section>
+            <section class="cs-card cs-full"><div class="cs-card-heading"><span>{_icon('briefcase')}</span><div><small>Playbook architecture</small><h2>The resource moved sellers from product understanding to campaign readiness</h2></div></div><div class="cs-flow">
+              <article><div>{_icon('users')}<span>Understand the opportunity</span></div><p>Research, funnel stage, ideal-client characteristics, audience strategy, and prospecting guidance established why video mattered.</p></article>{_icon('arrow')}<article><div>{_icon('network')}<span>Build the strategy</span></div><p>Targeting, segmentation, messaging, attribution, and complementary channels helped sellers shape the recommendation.</p></article>{_icon('arrow')}<article><div>{_icon('check')}<span>Prepare for execution</span></div><p>The playbook clarified the need for a completed 15- or 30-second video, destination URL, and trafficking instructions.</p></article>
+            </div></section>
+            <section class="cs-grid-2 cs-full">
+              <article class="cs-card"><div class="cs-card-heading"><span>{_icon('shield')}</span><div><small>Strategic decision</small><h2>Lead with the client need—not the platform name</h2></div></div><p style="color:var(--muted);font-size:.98rem;line-height:1.65;margin:0;">The playbook was intentionally product agnostic. Rather than organizing the story around individual vendors, it helped sellers begin with the objective, audience, funnel stage, and role of video within the larger media mix. The specific execution platform could follow after the strategy was clear.</p></article>
+              <article class="cs-card"><div class="cs-card-heading"><span>{_icon('check')}</span><div><small>Evidence of value</small><h2>An official resource that strengthened seller fluency</h2></div></div><div class="playbook-proof"><div class="playbook-proof-mark">{_icon('check')}<strong>Official</strong><span>enterprise-wide RAP resource</span></div><div class="playbook-proof-copy"><p>The finalized playbook was published on the corporate SharePoint site for all employees to access.</p><ul><li>Individual sellers said it supported better client conversations</li><li>Sellers used it to refresh targeting and audience knowledge</li><li>Sales leadership provided positive verbal feedback</li></ul></div></div></article>
+            </section>
+            <section class="cs-bottom"><article class="cs-contribution"><div><small>My strategic contribution</small><h2>I translated video and streaming capabilities into practical content for an enterprise sales playbook.</h2></div><div class="cs-capabilities">{contribution_html}</div></article><article class="cs-takeaway">{_icon('lightbulb')}<small>Strategic takeaway</small><p>A strong playbook does more than explain a product. It helps sellers understand when it fits, why it matters, and how it should work with the rest of the strategy.</p></article></section>
             <a class="cs-back" href="/GTM_Strategy_and_Sales_Enablement" target="_self">&larr; Return to GTM Strategy &amp; Sales Enablement</a>
           </section>
         </div>

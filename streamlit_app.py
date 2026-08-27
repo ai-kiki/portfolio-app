@@ -28,7 +28,7 @@ pages = [
     ),
     st.Page(
         "pages/2_Tools_Playbooks_and_Frameworks.py",
-        title="Tools, Playbooks & Frameworks",
+        title="AI Tools & Agentic Workflows",
         icon="🧰",
         url_path="Tools_Playbooks_and_Frameworks",
     ),
