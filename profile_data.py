@@ -3,17 +3,17 @@
 PROFILE = {
     "name": "L.C. Felton",
     "eyebrow": (
-        "Digital Marketing Strategy · Automation · Applied AI Technologies · Leadership"
+        "Digital Marketing · GTM Strategy · Sales Enablement · Marketing Operations · Automation"
     ),
-    "headline_prefix": "I build the strategy, systems, and teams behind ",
+    "headline_prefix": (
+        "I turn marketing strategy into clearer execution, stronger teams, and "
+    ),
     "headline_emphasis": "measurable growth.",
     "intro": (
-        "I combine digital marketing strategy with automation, applied AI, and "
-        "people-centered leadership to improve campaigns, simplify operations, "
-        "and build teams equipped to grow."
-    ),
-    "location": (
-        "Chesapeake, Virginia · Available for consulting and leadership opportunities"
+        "I’m a digital marketing leader with experience building campaigns, "
+        "go-to-market programs, sales enablement, and operational improvements. "
+        "I use data, automation, and applied AI when they help teams make better "
+        "decisions, move faster, and deliver stronger customer outcomes."
     ),
     "availability": "Open to select opportunities",
 }
@@ -23,32 +23,16 @@ ABOUT = [
         "I built my career inside a multibillion-dollar media and telecommunications "
         "enterprise, moving from hands-on digital roles into leadership and strategy. "
         "I partnered with major clients, led a 10-person team overseeing an $11.2M "
-        "digital ad budget, and learned how to turn ambitious ideas into work "
-        "that could actually be executed at scale."
+        "digital ad budget, and learned how to turn ambitious marketing ideas into "
+        "clear plans that teams could execute at scale."
     ),
     (
-        "One reporting challenge changed the way I thought about the work. Supporting "
-        "the enterprise’s largest advertiser, I spent 4–6 hours refreshing performance "
-        "reporting. At the time, automation wasn’t yet part of my toolkit. But I could "
-        "see that the process didn’t have to remain manual, so I taught myself what I "
-        "needed, tested the workflow, and built a scalable Looker Studio dashboard that "
-        "reduced the refresh to 15 minutes—work that earned Employee of the Quarter and "
-        "C-suite recognition."
-    ),
-    (
-        "Later, I applied that same problem-solving approach at team scale. My campaign "
-        "and ad operations team needed 10–12 business days to produce 50–70 client-ready "
-        "decks each month. I designed and automated Power BI dashboards that cut turnaround "
-        "to 3–5 days without increasing headcount, giving the team more time to analyze "
-        "performance, improve campaigns, and support better client decisions."
-    ),
-    (
-        "Those experiences clarified the kind of leader I am. Technology can handle the "
-        "grind, but it can’t decide what matters to a client, tell a story that moves "
-        "people to act, or help a team embrace change. I love translating complicated "
-        "data into clear narratives, building practical systems, and teaching people to "
-        "use them with confidence. My best work leaves teams with clearer decisions, "
-        "repeatable systems, and the confidence to keep improving long after the handoff."
+        "Recurring reporting bottlenecks pulled me deeper into process design and "
+        "automation. I reduced a 4–6 hour dashboard refresh to 15 minutes and later "
+        "helped cut team reporting turnaround from 10–12 business days to 3–5. Those "
+        "experiences shaped how I lead today: start with the customer and business goal, "
+        "make the work easier to understand and execute, and use technology only where "
+        "it meaningfully improves the outcome."
     ),
 ]
 

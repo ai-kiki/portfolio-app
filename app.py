@@ -27,29 +27,32 @@ def inject_styles() -> None:
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
 
         :root {
-            --ink: #13231f;
-            --muted: #60706b;
-            --paper: #f6f8f3;
+            --ink: #15243b;
+            --muted: #536279;
+            --paper: #ffffff;
             --surface: #ffffff;
-            --accent: #ff6b4a;
-            --accent-soft: #ffe7df;
-            --mint: #c9f2df;
-            --line: rgba(19, 35, 31, 0.12);
+            --accent: #5360a0;
+            --accent-strong: #344681;
+            --accent-soft: #edecf8;
+            --blue: #27649c;
+            --line: rgba(21, 36, 59, 0.13);
         }
 
         html { scroll-behavior: smooth; }
 
         .stApp {
             background:
-                radial-gradient(circle at 92% 4%, rgba(201, 242, 223, .70), transparent 29rem),
-                linear-gradient(180deg, #fbfcf8 0%, var(--paper) 100%);
+                radial-gradient(circle at 100% 0%, rgba(111,78,154,.58) 0%, rgba(67,91,161,.37) 8rem, rgba(67,91,161,0) 25rem),
+                radial-gradient(circle at 0% 100%, rgba(49,93,159,.52) 0%, rgba(104,75,151,.32) 8rem, rgba(104,75,151,0) 25rem),
+                linear-gradient(135deg, #f7f9fc 0%, #ffffff 30%, #ffffff 72%, #faf8fd 100%);
+            background-attachment: fixed;
             color: var(--ink);
             font-family: "DM Sans", sans-serif;
         }
 
         .block-container {
-            max-width: 1120px;
-            padding-top: 2.2rem;
+            max-width: 1240px;
+            padding-top: 1rem;
             padding-bottom: 5rem;
         }
 
@@ -65,133 +68,171 @@ def inject_styles() -> None:
         .stAppDeployButton { display: none !important; }
         #MainMenu, footer { visibility: hidden; }
 
-        .topbar {
+        .hero-shell {
             align-items: center;
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5.5rem;
+            display: grid;
+            gap: clamp(2.5rem, 5vw, 5rem);
+            grid-template-columns: minmax(0, 1.45fr) minmax(290px, .55fr);
+            min-height: 540px;
+            padding: clamp(2rem, 3vw, 3rem) 0 clamp(3rem, 5vw, 4.5rem);
         }
 
-        .brand {
-            align-items: center;
-            display: flex;
+        .hero-name {
+            color: var(--ink);
             font-family: "Manrope", sans-serif;
-            font-size: .92rem;
+            font-size: clamp(3.5rem, 6vw, 5.6rem);
             font-weight: 800;
-            gap: .65rem;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-        }
-
-        .brand-mark {
-            align-items: center;
-            background: var(--ink);
-            border-radius: 50%;
-            color: white;
-            display: inline-flex;
-            height: 2rem;
-            justify-content: center;
-            width: 2rem;
-        }
-
-        .status {
-            align-items: center;
-            background: rgba(255,255,255,.72);
-            border: 1px solid var(--line);
-            border-radius: 999px;
-            color: var(--muted);
-            display: flex;
-            font-size: .82rem;
-            gap: .55rem;
-            padding: .55rem .85rem;
-        }
-
-        .status-dot {
-            background: #26b778;
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px rgba(38,183,120,.14);
-            height: .5rem;
-            width: .5rem;
+            letter-spacing: -.065em;
+            line-height: .95;
+            margin-bottom: 1.5rem;
         }
 
         .eyebrow {
             color: var(--accent);
-            font-size: .78rem;
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(1.15rem, 1.8vw, 1.55rem);
             font-weight: 700;
-            letter-spacing: .14em;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
+            letter-spacing: -.02em;
+            line-height: 1.35;
+            margin-bottom: 1.6rem;
+            max-width: 850px;
         }
 
         .hero-title {
             font-family: "Manrope", sans-serif;
-            font-size: clamp(3.2rem, 7.8vw, 7rem);
-            font-weight: 800;
-            letter-spacing: -.075em;
-            line-height: .92;
-            margin: 0 0 1.6rem;
-            max-width: 920px;
+            font-size: clamp(1.65rem, 2.8vw, 2.55rem);
+            font-weight: 700;
+            letter-spacing: -.04em;
+            line-height: 1.16;
+            margin: 0 0 1.35rem;
+            max-width: 820px;
         }
 
         .hero-title .accent {
-            color: var(--accent);
-            font-style: italic;
+            color: var(--accent-strong);
         }
 
         .hero-copy {
             color: var(--muted);
-            font-size: 1.15rem;
-            line-height: 1.7;
-            margin-bottom: 1rem;
-            max-width: 680px;
+            font-size: clamp(1.1rem, 1.45vw, 1.28rem);
+            line-height: 1.72;
+            margin-bottom: 0;
+            max-width: 780px;
         }
 
-        .location-line {
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .8rem;
+            margin-top: 1.8rem;
+        }
+
+        .hero-cta {
+            align-items: center;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            display: inline-flex;
+            font-size: .92rem;
+            font-weight: 800;
+            justify-content: center;
+            min-height: 3.2rem;
+            padding: 0 1.3rem;
+            text-decoration: none !important;
+            transition: transform .18s ease, box-shadow .18s ease;
+        }
+
+        .hero-cta.primary {
+            background: #18365d;
+            border-color: #18365d;
+            color: white !important;
+        }
+
+        .hero-cta.secondary {
+            background: rgba(255,255,255,.76);
+            color: #18365d !important;
+        }
+
+        .hero-cta:hover {
+            box-shadow: 0 9px 24px rgba(31,53,88,.14);
+            transform: translateY(-2px);
+        }
+
+        .hero-proof {
+            backdrop-filter: blur(12px);
+            background: rgba(255,255,255,.70);
+            border: 1px solid rgba(21,36,59,.10);
+            border-radius: 22px;
+            box-shadow: 0 20px 55px rgba(31,53,88,.08);
+            padding: 1.5rem;
+        }
+
+        .hero-proof-title {
             color: var(--ink);
-            font-size: .9rem;
-            font-weight: 600;
-            margin: 1.1rem 0 2rem;
+            font-family: "Manrope", sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: .6rem;
+        }
+
+        .hero-stat {
+            border-top: 1px solid var(--line);
+            padding: 1rem 0 .85rem;
+        }
+
+        .hero-stat-value {
+            color: var(--accent-strong);
+            font-family: "Manrope", sans-serif;
+            font-size: 1.45rem;
+            font-weight: 800;
+            letter-spacing: -.035em;
+        }
+
+        .hero-stat-label {
+            color: var(--muted);
+            font-size: .8rem;
+            margin-top: .12rem;
         }
 
         .section {
             border-top: 1px solid var(--line);
-            margin-top: 6rem;
-            padding-top: 1.4rem;
+            margin-top: 7.5rem;
+            padding-top: 1.6rem;
         }
 
         .section-number {
             color: var(--accent);
-            font-size: .78rem;
-            font-weight: 700;
-            letter-spacing: .12em;
+            font-family: "Manrope", sans-serif;
+            font-size: clamp(1.9rem, 3vw, 2.6rem);
+            font-weight: 800;
+            letter-spacing: -.04em;
+            line-height: 1.05;
         }
 
         .section-title {
-            font-family: "Manrope", sans-serif;
-            font-size: clamp(2.1rem, 4vw, 3.7rem);
-            font-weight: 800;
-            letter-spacing: -.055em;
-            line-height: 1;
-            margin: .7rem 0 2rem;
+            color: var(--muted);
+            font-family: "DM Sans", sans-serif;
+            font-size: clamp(1.35rem, 2.2vw, 2rem);
+            font-weight: 500;
+            letter-spacing: -.025em;
+            line-height: 1.3;
+            margin: .7rem 0 2.5rem;
+            max-width: 820px;
         }
 
         .about-copy {
-            max-width: 920px;
+            max-width: 840px;
         }
 
         .about-lead {
             color: var(--ink);
-            font-family: "Manrope", sans-serif;
-            font-size: clamp(1.45rem, 2.8vw, 2.25rem);
-            font-weight: 600;
-            letter-spacing: -.035em;
-            line-height: 1.35;
-            margin: 0 0 2rem;
+            font-size: 1.08rem;
+            line-height: 1.78;
+            margin: 0 0 1.25rem;
         }
 
         .about-body {
             color: var(--muted);
-            font-size: 1.06rem;
+            font-size: 1rem;
             line-height: 1.78;
             margin: 0 0 1.25rem;
             max-width: 800px;
@@ -201,8 +242,10 @@ def inject_styles() -> None:
             background: rgba(255,255,255,.72);
             border: 1px solid var(--line);
             border-radius: 18px;
-            min-height: 190px;
+            box-sizing: border-box;
+            height: 300px;
             padding: 1.45rem;
+            width: 100%;
         }
 
         .skill-group h3 {
@@ -222,18 +265,19 @@ def inject_styles() -> None:
         }
 
         .project-card {
-            background: var(--surface);
+            background: rgba(255,255,255,.78);
             border: 1px solid var(--line);
             border-radius: 22px;
-            box-shadow: 0 14px 50px rgba(19,35,31,.05);
-            height: 100%;
-            min-height: 420px;
+            box-shadow: 0 14px 50px rgba(31,53,88,.05);
+            box-sizing: border-box;
+            height: 410px;
             padding: 1.7rem;
             transition: transform .2s ease, box-shadow .2s ease;
+            width: 100%;
         }
 
         .project-card:hover {
-            box-shadow: 0 18px 60px rgba(19,35,31,.10);
+            box-shadow: 0 18px 60px rgba(31,53,88,.11);
             transform: translateY(-4px);
         }
 
@@ -269,7 +313,7 @@ def inject_styles() -> None:
         }
 
         .project-card h3 {
-            font-size: 1.45rem;
+            font-size: 1.35rem;
             margin: 1.35rem 0 .7rem;
         }
 
@@ -302,15 +346,17 @@ def inject_styles() -> None:
             border-radius: 20px;
             color: var(--ink) !important;
             display: block;
-            min-height: 205px;
+            box-sizing: border-box;
+            height: 235px;
             padding: 1.4rem;
             text-decoration: none !important;
             transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+            width: 100%;
         }
 
         .portfolio-directory-card:hover {
-            border-color: rgba(255,107,74,.55);
-            box-shadow: 0 16px 45px rgba(19,35,31,.09);
+            border-color: rgba(83,96,160,.48);
+            box-shadow: 0 16px 45px rgba(31,53,88,.10);
             transform: translateY(-4px);
         }
 
@@ -343,7 +389,7 @@ def inject_styles() -> None:
         }
 
         [data-testid="stSidebar"] {
-            background: #13231f;
+            background: #15243b;
         }
 
         [data-testid="stSidebar"] * {
@@ -351,7 +397,7 @@ def inject_styles() -> None:
         }
 
         .timeline-item {
-            border-left: 2px solid var(--mint);
+            border-left: 2px solid rgba(83,96,160,.25);
             margin-left: .4rem;
             padding: 0 0 2.1rem 1.5rem;
             position: relative;
@@ -397,7 +443,7 @@ def inject_styles() -> None:
         }
 
         .contact-panel {
-            background: var(--ink);
+            background: #18365d;
             border-radius: 26px;
             color: white;
             margin-top: 6rem;
@@ -407,7 +453,7 @@ def inject_styles() -> None:
         }
 
         .contact-panel::after {
-            background: var(--accent);
+            background: linear-gradient(135deg, #5360a0, #7653a0);
             border-radius: 50%;
             content: "";
             filter: blur(2px);
@@ -465,19 +511,43 @@ def inject_styles() -> None:
         }
 
         div.stButton > button:hover, div.stLinkButton > a:hover {
-            background: #f15e3e;
-            box-shadow: 0 9px 24px rgba(255,107,74,.24);
+            background: var(--accent-strong);
+            box-shadow: 0 9px 24px rgba(83,96,160,.24);
             color: white;
             transform: translateY(-2px);
         }
 
+        @media (max-width: 900px) {
+            .hero-shell {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .hero-proof {
+                display: grid;
+                gap: 0 1.2rem;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .hero-proof-title { grid-column: 1 / -1; }
+        }
+
         @media (max-width: 700px) {
             .block-container { padding: 1.2rem 1rem 3rem; }
-            .topbar { margin-bottom: 4rem; }
-            .status { display: none; }
-            .hero-title { font-size: 3.6rem; }
+            .hero-shell { padding-top: 1.5rem; }
+            .hero-name { font-size: 3.3rem; }
+            .eyebrow { font-size: 1.05rem; }
+            .hero-title { font-size: 1.7rem; }
+            .hero-copy { font-size: 1.04rem; }
+            .hero-proof { grid-template-columns: 1fr; }
             .section { margin-top: 4.5rem; }
-            .project-card { min-height: 240px; margin-bottom: .7rem; }
+            .section-number { font-size: 1.85rem; }
+            .section-title { font-size: 1.25rem; }
+            .project-card, .portfolio-directory-card, .skill-group {
+                height: auto;
+                min-height: 0;
+                margin-bottom: .7rem;
+            }
         }
         </style>
         """,
@@ -554,69 +624,48 @@ def render_portfolio_directory_item(item: dict[str, object], index: int) -> None
 inject_styles()
 render_portfolio_navigation()
 
+hero_proof = [
+    ("$11.2M", "Digital portfolio led"),
+    ("35% YoY", "Revenue growth"),
+    ("10–12 → 3–5 days", "Reporting turnaround"),
+    ("$300K → $2.75M", "Google Ads revenue"),
+]
+hero_proof_html = "".join(
+    f'<div class="hero-stat"><div class="hero-stat-value">{safe(value)}</div>'
+    f'<div class="hero-stat-label">{safe(label)}</div></div>'
+    for value, label in hero_proof
+)
+
 st.markdown(
     f"""
-    <div class="topbar">
-        <div class="brand">
-            <span class="brand-mark">✦</span>
-            {safe(PROFILE["name"])}
+    <section class="hero-shell" aria-label="Introduction">
+        <div class="hero-main">
+            <div class="hero-name">{safe(PROFILE["name"])}</div>
+            <div class="eyebrow">{safe(PROFILE["eyebrow"])}</div>
+            <div class="hero-title">
+                {safe(PROFILE["headline_prefix"])}
+                <span class="accent">{safe(PROFILE["headline_emphasis"])}</span>
+            </div>
+            <div class="hero-copy">{safe(PROFILE["intro"])}</div>
+            <div class="hero-actions">
+                <a class="hero-cta primary" href="/Case_Studies" target="_self">View case studies</a>
+                <a class="hero-cta secondary" href="mailto:{safe(CONTACT['email'])}">Contact me</a>
+            </div>
         </div>
-        <div class="status">
-            <span class="status-dot"></span>
-            {safe(PROFILE["availability"])}
-        </div>
-    </div>
-
-    <div class="eyebrow">{safe(PROFILE["eyebrow"])}</div>
-    <div class="hero-title">
-        {safe(PROFILE["headline_prefix"])}
-        <span class="accent">{safe(PROFILE["headline_emphasis"])}</span>
-    </div>
-    <div class="hero-copy">{safe(PROFILE["intro"])}</div>
-    <div class="location-line">⌁ {safe(PROFILE["location"])}</div>
+        <aside class="hero-proof" aria-label="Career impact snapshot">
+            <div class="hero-proof-title">Career impact</div>
+            {hero_proof_html}
+        </aside>
+    </section>
     """,
     unsafe_allow_html=True,
 )
 
-hero_left, _ = st.columns([1.25, 3.75])
-with hero_left:
-    st.link_button("Start a conversation", f"mailto:{CONTACT['email']}", use_container_width=True)
-
 st.markdown(
     """
     <div class="section">
-        <div class="section-number">01 / ABOUT</div>
-        <div class="section-title">The story behind the work.</div>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-about_story = (
-    f'<p class="about-lead">{safe(ABOUT[0])}</p>'
-    + "".join(f'<p class="about-body">{safe(paragraph)}</p>' for paragraph in ABOUT[1:])
-)
-st.markdown(f'<div class="about-copy">{about_story}</div>', unsafe_allow_html=True)
-
-st.markdown(
-    """
-    <div class="section">
-        <div class="section-number">02 / CAPABILITIES</div>
-        <div class="section-title">What I bring to the table.</div>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-skill_columns = st.columns(len(SKILLS))
-for column, (group_name, group_skills) in zip(skill_columns, SKILLS.items()):
-    with column:
-        render_skill_group(group_name, group_skills)
-
-st.markdown(
-    """
-    <div class="section">
-        <div class="section-number">03 / SELECTED IMPACT</div>
-        <div class="section-title">Where strategy became measurable results.</div>
+        <div class="section-number">01 / SELECTED IMPACT</div>
+        <div class="section-title">Strategy backed by measurable results.</div>
     </div>
     """,
     unsafe_allow_html=True,
@@ -629,16 +678,6 @@ for row_start in range(0, len(PROJECTS), 2):
         with columns[offset]:
             render_project(project, row_start + offset + 1)
     st.write("")
-
-st.markdown(
-    """
-    <div class="section">
-        <div class="section-number">04 / PROJECT PORTFOLIO</div>
-        <div class="section-title">Explore the work behind the outcomes.</div>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
 
 portfolio_directory_items = [
     {
@@ -679,6 +718,16 @@ portfolio_directory_items = [
     },
 ]
 
+st.markdown(
+    """
+    <div class="section">
+        <div class="section-number">02 / FEATURED WORK</div>
+        <div class="section-title">Explore the work behind the outcomes.</div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
 for row_start in range(0, len(portfolio_directory_items), 2):
     row_items = portfolio_directory_items[row_start : row_start + 2]
     columns = st.columns(2)
@@ -686,6 +735,36 @@ for row_start in range(0, len(portfolio_directory_items), 2):
         with columns[offset]:
             render_portfolio_directory_item(item, row_start + offset + 1)
     st.write("")
+
+st.markdown(
+    """
+    <div class="section">
+        <div class="section-number">03 / CAPABILITIES</div>
+        <div class="section-title">What I bring to the table.</div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+skill_columns = st.columns(len(SKILLS))
+for column, (group_name, group_skills) in zip(skill_columns, SKILLS.items()):
+    with column:
+        render_skill_group(group_name, group_skills)
+
+st.markdown(
+    """
+    <div class="section">
+        <div class="section-number">04 / ABOUT</div>
+        <div class="section-title">The story behind the work.</div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+about_story = (
+    f'<p class="about-lead">{safe(ABOUT[0])}</p>'
+    + "".join(f'<p class="about-body">{safe(paragraph)}</p>' for paragraph in ABOUT[1:])
+)
+st.markdown(f'<div class="about-copy">{about_story}</div>', unsafe_allow_html=True)
 
 st.markdown(
     """
