@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import base64
 import html
+from pathlib import Path
 from textwrap import dedent
 
 import streamlit as st
@@ -249,15 +251,16 @@ _GALLERY_STYLES = """
 .gallery-brand { align-items: center; display: flex; font-size: .9rem; font-weight: 800; gap: .65rem; letter-spacing: .08em; text-transform: uppercase; }
 .gallery-brand i { align-items: center; background:#13231f; border-radius:50%; color:white; display:flex; font-style:normal; height:2rem; justify-content:center; width:2rem; }
 .gallery-status { background:rgba(255,255,255,.75); border:1px solid rgba(19,35,31,.12); border-radius:999px; color:#60706b; font-size:.8rem; font-weight:700; padding:.55rem .85rem; }
-.gallery-eyebrow { color:#ff6b4a; font-size:.78rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
-.gallery h1 { color:#13231f !important; font-family:"Manrope",sans-serif !important; font-size:clamp(3rem,7vw,6rem); font-weight:800; letter-spacing:-.07em; line-height:.94; margin:1rem 0 1.35rem; }
+.gallery-eyebrow { color:#5360a0; font-size:1rem; font-weight:800; letter-spacing:.13em; text-transform:uppercase; }
+.gallery h1 { color:#13231f !important; font-family:"Manrope",sans-serif !important; font-size:clamp(2.1rem,3.8vw,3.4rem); font-weight:800; letter-spacing:-.055em; line-height:1; margin:1rem 0 1.35rem; max-width:940px; }
 .gallery-intro { color:#60706b; font-size:1.14rem; line-height:1.7; max-width:760px; }
-.gallery-grid { display:grid; gap:1rem; grid-template-columns:repeat(3,1fr); margin-top:3rem; }
-.gallery-card { background:white; border:1px solid rgba(19,35,31,.12); border-radius:26px; box-shadow:0 16px 50px rgba(19,35,31,.07); color:inherit !important; display:block; min-height:480px; overflow:hidden; padding:2rem; position:relative; text-decoration:none !important; transition:transform .2s ease,box-shadow .2s ease; }
+.gallery-grid { display:grid; gap:1rem; grid-template-columns:repeat(2,1fr); margin-top:3rem; }
+.gallery-card { background:white; border:1px solid rgba(19,35,31,.12); border-radius:26px; box-shadow:0 16px 50px rgba(19,35,31,.07); color:inherit !important; display:flex; flex-direction:column; min-height:480px; overflow:hidden; padding:2rem; position:relative; text-decoration:none !important; transition:transform .2s ease,box-shadow .2s ease; }
 .gallery-card:hover { box-shadow:0 22px 65px rgba(19,35,31,.13); transform:translateY(-5px); }
 .gallery-card.health { --c:#2d7691; --d:#123e4b; --s:#dcebed; }
 .gallery-card.tech { --c:#6d39db; --d:#0b1f3a; --s:#e9f0ff; }
 .gallery-card.auto { --c:#f07832; --d:#1b262b; --s:#e3e9eb; }
+.gallery-card.ecommerce { --c:#0b7c75; --d:#0c2744; --s:#dff5f1; }
 .gallery-card::before { background:var(--d); content:""; height:11px; inset:0 0 auto; position:absolute; }
 .gallery-card-head { align-items:center; display:flex; justify-content:space-between; margin-top:.4rem; }
 .gallery-category { color:var(--c); font-size:.78rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
@@ -268,7 +271,7 @@ _GALLERY_STYLES = """
 .gallery-card p { color:#60706b; font-size:.98rem; line-height:1.65; }
 .gallery-tags { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:1.35rem; }
 .gallery-tags span { background:var(--s); border-radius:999px; color:var(--d); font-size:.77rem; font-weight:700; padding:.43rem .68rem; }
-.gallery-open { bottom:1.8rem; color:var(--d); font-size:.88rem; font-weight:800; position:absolute; }
+.gallery-open { bottom:auto !important; clear:both; color:var(--d); display:block; flex-shrink:0; font-size:.88rem; font-weight:800; margin-top:auto; padding-top:1.6rem; position:static !important; }
 .gallery-note { border-top:1px solid rgba(19,35,31,.12); color:#60706b; font-size:.9rem; line-height:1.6; margin-top:3.5rem; padding-top:1.2rem; }
 @media(max-width:980px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:760px){.block-container{padding:1.2rem 1rem 3rem}.gallery-top{margin-bottom:3.5rem}.gallery-status{display:none}.gallery-grid{grid-template-columns:1fr}.gallery-card{min-height:450px}}
@@ -277,6 +280,7 @@ _GALLERY_STYLES = """
 
 
 def _render_gallery() -> None:
+    ecommerce_icon = _icon("growth")
     health_icon = _icon("target")
     tech_icon = _icon("network")
     auto_icon = _icon("car")
@@ -292,6 +296,14 @@ def _render_gallery() -> None:
           <h1>Case studies built around the decisions that drove results.</h1>
           <p class="gallery-intro">Explore how I translated business objectives into audience, channel, budget, measurement, and optimization strategies across different industries and constraints.</p>
           <section class="gallery-grid">
+            <a class="gallery-card ecommerce" href="/Case_Studies?case=ecommerce-roas" target="_self">
+              <div class="gallery-card-head"><span class="gallery-category">E-commerce</span><span class="gallery-icon">{ecommerce_icon}</span></div>
+              <div class="gallery-metric">2.92x</div>
+              <h2>Blended ROAS from a full-funnel media strategy</h2>
+              <p>An anonymous sporting-goods retailer turned a $55K media investment into $160.7K in attributed revenue by giving awareness, consideration, and conversion channels distinct jobs.</p>
+              <div class="gallery-tags"><span>Google Shopping</span><span>Meta Ads</span><span>Programmatic video</span><span>Revenue attribution</span></div>
+              <span class="gallery-open">Open case study &rarr;</span>
+            </a>
             <a class="gallery-card health" href="/Case_Studies?case=ent-physician" target="_self">
               <div class="gallery-card-head"><span class="gallery-category">Healthcare</span><span class="gallery-icon">{health_icon}</span></div>
               <div class="gallery-metric">1,139</div>
@@ -318,6 +330,147 @@ def _render_gallery() -> None:
             </a>
           </section>
           <p class="gallery-note">Client identities and selected identifying details are intentionally withheld. Results and attribution notes are disclosed within each case study.</p>
+        </div>
+        """),
+        unsafe_allow_html=True,
+    )
+
+
+_ECOMMERCE_STYLES = """
+<style>
+.ecom-case .cs-hero { align-items:center; background:linear-gradient(135deg,#f8fbfd 0%,#edf3f7 54%,#e7eef3 100%); color:var(--deep); grid-template-columns:.92fr 1.08fr; min-height:535px; padding:clamp(2rem,4vw,3.7rem); }
+.ecom-case .cs-hero::after { background:radial-gradient(circle,rgba(11,124,117,.13),transparent 68%); height:420px; opacity:1; right:-135px; top:-165px; width:420px; }
+.ecom-case .cs-kicker { color:var(--accent); }
+.ecom-case .cs-hero h1 { color:var(--deep)!important; margin:.8rem 0 1.3rem; }
+.ecom-case .cs-hero h1 a { display:none!important; }
+.ecom-case .cs-hero h1 strong { display:block; font-size:clamp(5.6rem,10vw,8.5rem); letter-spacing:-.09em; line-height:.82; }
+.ecom-case .cs-hero h1 span { display:block; font-size:clamp(2.2rem,4.3vw,3.6rem); letter-spacing:-.065em; line-height:.98; margin-top:.55rem; }
+.ecom-case .cs-hero-copy > p { color:#526879; font-size:1.03rem; line-height:1.55; max-width:560px; }
+.ecom-hero-visual { align-self:end; background:transparent; border:0; border-radius:0; box-shadow:none; margin:0 -2.4rem -1.1rem -1.5rem; overflow:visible; position:relative; z-index:1; }
+.ecom-hero-visual img { display:block; filter:drop-shadow(0 28px 23px rgba(16,39,59,.16)); height:auto; transform:scale(1.08); transform-origin:center bottom; width:100%; }
+.ecom-role-strip { background:#fff; border:1px solid var(--line); border-radius:var(--card-radius); display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin:.8rem 0; overflow:hidden; }
+.ecom-role-strip article { padding:1.05rem 1.15rem; }
+.ecom-role-strip article + article { border-left:1px solid var(--line); }
+.ecom-role-strip span { color:var(--muted); display:block; font-size:.72rem; font-weight:850; letter-spacing:.07em; text-transform:uppercase; }
+.ecom-role-strip strong { display:block; font-size:.94rem; line-height:1.4; margin-top:.35rem; }
+.ecom-threshold { background:linear-gradient(135deg,#e7f7f3,#edf4ff); border-radius:14px; display:grid; gap:.7rem; grid-template-columns:repeat(3,1fr); margin-top:1rem; padding:1rem; }
+.ecom-threshold div { text-align:center; }
+.ecom-threshold strong { color:var(--deep); display:block; font-family:"Manrope",sans-serif; font-size:1.5rem; }
+.ecom-threshold span { color:var(--muted); display:block; font-size:.82rem; line-height:1.35; margin-top:.25rem; }
+.ecom-funnel { align-items:stretch; display:grid; gap:.7rem; grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr) 34px minmax(0,1fr); }
+.ecom-funnel > svg { align-self:center; color:var(--highlight); height:27px; width:27px; }
+.ecom-funnel article { background:#edf4fa; border:1px solid rgba(255,255,255,.5); border-radius:15px; color:var(--deep); display:flex; flex-direction:column; height:100%; min-height:235px; padding:1.35rem; }
+.ecom-funnel article:nth-of-type(2) { background:#e7f4f1; }
+.ecom-funnel article:nth-of-type(3) { background:#f8fafc; }
+.ecom-funnel span { color:var(--accent); font-size:.77rem; font-weight:850; letter-spacing:.08em; text-transform:uppercase; }
+.ecom-funnel strong { display:block; font-family:"Manrope",sans-serif; font-size:1.28rem; line-height:1.2; margin:.7rem 0; }
+.ecom-funnel p { color:var(--muted); font-size:.92rem; line-height:1.5; margin:0; }
+.ecom-funnel b { color:var(--accent); display:block; font-size:1.15rem; margin-top:auto; padding-top:1rem; }
+.ecom-dr-band { align-items:center; background:#fff; border-radius:13px; color:var(--deep); display:grid; gap:1rem; grid-template-columns:1fr auto; margin-top:.8rem; padding:1.1rem 1.25rem; }
+.ecom-dr-band p { font-size:.94rem; line-height:1.5; margin:0; }
+.ecom-dr-band strong { color:var(--accent); font-family:"Manrope",sans-serif; font-size:1.9rem; white-space:nowrap; }
+.ecom-channel-results { display:grid; gap:.7rem; grid-template-columns:repeat(3,1fr); }
+.ecom-channel-results article { background:var(--bg); border:1px solid var(--line); border-radius:14px; display:flex; flex-direction:column; min-height:225px; padding:1.3rem; }
+.ecom-channel-results article:nth-child(1) { border-top:5px solid #195fc3; }
+.ecom-channel-results article:nth-child(2) { border-top:5px solid #168d83; }
+.ecom-channel-results article:nth-child(3) { border-top:5px solid #8a6fd1; }
+.ecom-channel-results span { color:var(--muted); font-size:.8rem; font-weight:800; text-transform:uppercase; }
+.ecom-channel-results strong { color:var(--deep); display:block; font-family:"Manrope",sans-serif; font-size:2rem; margin:.8rem 0 .2rem; }
+.ecom-channel-results b { color:var(--accent); display:block; font-size:1rem; }
+.ecom-channel-results p { color:var(--muted); font-size:.9rem; line-height:1.48; margin:auto 0 0; padding-top:1rem; }
+.ecom-impact { display:grid; gap:.7rem; grid-template-columns:repeat(4,1fr); }
+.ecom-impact article { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); border-radius:13px; min-height:155px; padding:1.2rem; }
+.ecom-impact strong { color:var(--highlight); display:block; font-family:"Manrope",sans-serif; font-size:1.75rem; }
+.ecom-impact span { color:#fff; display:block; font-size:.92rem; font-weight:800; line-height:1.35; margin-top:.5rem; }
+.ecom-impact small { color:var(--hero-copy); display:block; font-size:.8rem; line-height:1.4; margin-top:.45rem; }
+@media(max-width:980px){.ecom-case .cs-hero{grid-template-columns:1fr}.ecom-hero-visual{margin:1rem -1rem -1rem}.ecom-hero-visual img{margin:auto;max-width:760px;transform:none}.ecom-role-strip{grid-template-columns:repeat(2,1fr)}.ecom-role-strip article:nth-child(3){border-left:0;border-top:1px solid var(--line)}.ecom-role-strip article:nth-child(4){border-top:1px solid var(--line)}.ecom-funnel{grid-template-columns:1fr}.ecom-funnel>svg{justify-self:center;transform:rotate(90deg)}.ecom-impact{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.ecom-case .cs-hero h1 strong{font-size:5.1rem}.ecom-case .cs-hero h1 span{font-size:2.25rem}.ecom-role-strip,.ecom-threshold,.ecom-channel-results,.ecom-impact{grid-template-columns:1fr}.ecom-role-strip article+article,.ecom-role-strip article:nth-child(3){border-left:0;border-top:1px solid var(--line)}.ecom-dr-band{grid-template-columns:1fr}.ecom-dr-band strong{white-space:normal}}
+</style>
+"""
+
+
+def _render_ecommerce() -> None:
+    hero_path = Path(__file__).resolve().parent / "assets" / "ecommerce-sport-utility-bag-cutout.png"
+    hero_src = "data:image/png;base64," + base64.b64encode(hero_path.read_bytes()).decode("ascii")
+    capabilities = [
+        "Cross-channel media strategy",
+        "Budget allocation",
+        "Google Shopping optimization",
+        "Paid-search keyword strategy",
+        "Meta audience strategy",
+        "Programmatic video planning",
+        "Creative collaboration",
+        "CRM, GA4 & DSP reconciliation",
+    ]
+    contribution_html = "".join(f"<span>{item}</span>" for item in capabilities)
+    st.markdown(
+        _BASE_STYLES
+        + _ECOMMERCE_STYLES
+        + dedent(f"""
+        <div class="cs-shell ecom-case" style="--bg:#f1f5f8;--surface:#ffffff;--soft:#dff5f1;--ink:#132b3f;--muted:#5d7080;--line:#d3dee5;--deep:#0c2744;--accent:#0b7c75;--highlight:#69d6c9;--glow:#1676c6;--hero-copy:#d4e2ed;--hero-muted:#adc3d3;--shadow:rgba(12,39,68,.08);--accent-gradient:linear-gradient(135deg,#0b7c75,#1676c6);--bar-gradient:linear-gradient(90deg,#0b7c75,#1676c6);--hero-radius:28px 8px 28px 8px;--card-radius:19px 6px 19px 6px;--section-radius:22px 7px 22px 7px;--icon-radius:50%;--kpi-count:4;--channel-count:3;">
+          <header class="cs-sitebar"><a class="cs-sitebrand" href="/Case_Studies" target="_self"><i>CS</i> Portfolio case study</a><span class="cs-category">E-commerce</span></header>
+          <section class="cs-wrap">
+            <section class="cs-hero">
+              <div class="cs-hero-copy"><span class="cs-kicker">E-commerce performance marketing · Six-month campaign</span><h1><strong>2.92x</strong><span>blended ROAS</span></h1><p>A full-funnel media strategy connected demand generation, consideration, and high-intent acquisition to reconciled ecommerce revenue.</p></div>
+              <figure class="ecom-hero-visual"><img src="{hero_src}" alt="Black sport utility duffle bag with blue zipper accents"></figure>
+            </section>
+            <section class="ecom-role-strip">
+              <article><span>Role</span><strong>Digital Marketing Manager · Lead Strategist</strong></article>
+              <article><span>Business model</span><strong>Direct-to-consumer sporting goods</strong></article>
+              <article><span>Media mix</span><strong>Google, Meta &amp; Programmatic Video</strong></article>
+              <article><span>Measurement</span><strong>CRM, GA4, DSP &amp; Platform Reporting</strong></article>
+            </section>
+            <section class="cs-kpis">
+              <article><span class="cs-icon-bubble">{_icon('money')}</span><div><strong>$55K</strong><p>Media investment</p><small>Across six months</small></div></article>
+              <article><span class="cs-icon-bubble">{_icon('growth')}</span><div><strong>$160.7K</strong><p>Attributed revenue</p><small>Final reconciled total</small></div></article>
+              <article><span class="cs-icon-bubble">{_icon('chart')}</span><div><strong>2.92x</strong><p>Blended ROAS</p><small>Across the full media mix</small></div></article>
+              <article><span class="cs-icon-bubble">{_icon('check')}</span><div><strong>1,408</strong><p>Transactions</p><small>Approximately 235 per month</small></div></article>
+            </section>
+            <section class="cs-grid-2">
+              <article class="cs-card"><div class="cs-card-heading"><span>{_icon('alert')}</span><div><small>The business requirement</small><h2>Growth had to clear a practical profitability threshold</h2></div></div><p style="color:var(--muted);font-size:1rem;line-height:1.68;">The client had not established a formal ROAS target. Instead, the operating requirement was approximately 200 monthly transactions at a $95 average transaction value. That made revenue quality—and not simply clicks, video views, or platform conversions—the standard for evaluating the campaign.</p><div class="ecom-threshold"><div><strong>200</strong><span>transactions needed per month</span></div><div><strong>$95</strong><span>required average transaction value</span></div><div><strong>$114K</strong><span>derived six-month revenue threshold</span></div></div></article>
+              <article class="cs-card"><div class="cs-card-heading"><span>{_icon('target')}</span><div><small>The strategic decision</small><h2>Allocate by channel responsibility—not one universal KPI</h2></div></div><div class="cs-list">
+                <div>{_icon('play')}<p><strong>20% to demand generation</strong><span>Programmatic video built awareness and created audiences for later engagement and retargeting.</span></p></div>
+                <div>{_icon('users')}<p><strong>30% to consideration</strong><span>Meta expanded engagement, supported product discovery, and activated remarketing and lookalike audiences.</span></p></div>
+                <div>{_icon('search')}<p><strong>50% to intent capture</strong><span>Google Search and Shopping met prospects closest to purchase and carried the largest direct-response role.</span></p></div>
+              </div></article>
+            </section>
+            <section class="cs-dark"><div class="cs-section-heading"><small>The full-funnel architecture</small><h2>Not every channel had the same job</h2></div><div class="ecom-funnel">
+              <article><span>Awareness · 20%</span><strong>Programmatic video</strong><p>Simpli.fi DSP and Google DV360 placed existing video assets at the top of the funnel and supported retargeting.</p><b>0.81x direct ROAS</b></article>{_icon('arrow')}
+              <article><span>Consideration · 30%</span><strong>Meta Ads</strong><p>Paid social built engagement, created addressable audiences, and brought product stories back to cart abandoners.</p><b>3.2x ROAS</b></article>{_icon('arrow')}
+              <article><span>Conversion · 50%</span><strong>Google Search &amp; Shopping</strong><p>High-intent search and product listings captured existing demand, with Shopping delivering the strongest performance.</p><b>3.6x ROAS</b></article>
+            </div><div class="ecom-dr-band"><p><strong style="font-size:inherit;">Direct-response result:</strong> Google and Meta carried 80% of spend and generated approximately $151.8K in attributed revenue.</p><strong>3.45x ROAS</strong></div></section>
+            <section class="cs-grid-2">
+              <article class="cs-card"><div class="cs-card-heading"><span>{_icon('users')}</span><div><small>Audience strategy</small><h2>Build consideration, then reconnect with intent</h2></div></div><div class="cs-list">
+                <div>{_icon('map')}<p><strong>Golf-market geography</strong><span>Focused relevant paid-social activity on East Coast cities with sizeable golfing communities.</span></p></div>
+                <div>{_icon('users')}<p><strong>Baseball households</strong><span>Reached parents of youth baseball players alongside baseball and broader sports enthusiasts.</span></p></div>
+                <div>{_icon('mouse')}<p><strong>Abandoned-cart remarketing</strong><span>Re-engaged high-intent visitors who had reached the cart without completing a transaction.</span></p></div>
+                <div>{_icon('network')}<p><strong>Customer-list lookalikes</strong><span>Used existing customer data to find new prospects with characteristics similar to proven buyers.</span></p></div>
+              </div></article>
+              <article class="cs-card"><div class="cs-card-heading"><span>{_icon('search')}</span><div><small>Search and merchandising</small><h2>Make customization visible at the moment of purchase intent</h2></div></div><div class="cs-list">
+                <div>{_icon('briefcase')}<p><strong>Dedicated custom utility-bag ad group</strong><span>Separated baseball and golf utility bags so customization could become part of the paid-search story.</span></p></div>
+                <div>{_icon('plus')}<p><strong>Approximately $7 in added value</strong><span>Customization increased the average transaction by about $7, giving the feature direct revenue relevance.</span></p></div>
+                <div>{_icon('check')}<p><strong>Structured query control</strong><span>Used exact and phrase match lists alongside a maintained negative-keyword list.</span></p></div>
+                <div>{_icon('growth')}<p><strong>Product-led optimization</strong><span>Baseball bags performed better than golf bags, and Google Shopping led the search program.</span></p></div>
+              </div></article>
+            </section>
+            <section class="cs-card cs-full"><div class="cs-card-heading"><span>{_icon('chart')}</span><div><small>Channel performance</small><h2>Evaluate return in the context of each channel's assignment</h2></div></div><div class="ecom-channel-results">
+              <article><span>Google Search + Shopping</span><strong>3.6x</strong><b>$99K attributed revenue</b><p>Highest direct ROAS and roughly 62% of total attributed campaign revenue.</p></article>
+              <article><span>Meta Ads</span><strong>3.2x</strong><b>$52.8K attributed revenue</b><p>Strong ecommerce return while supporting consideration, engagement, and retargeting.</p></article>
+              <article><span>Programmatic Video</span><strong>0.81x</strong><b>$8.9K attributed revenue</b><p>Lower direct return was expected for a channel assigned to awareness and audience creation.</p></article>
+            </div><p class="cs-note"><strong>Strategic interpretation:</strong> Video was not expected to outperform high-intent media on direct attributed revenue. Its job was to add a necessary top-of-funnel layer using available video assets, while Google and Meta remained accountable for the majority of direct response.</p></section>
+            <section class="cs-card cs-full"><div class="cs-card-heading"><span>{_icon('database')}</span><div><small>Closing the attribution gap</small><h2>Platform conversions were checked against actual sales</h2></div></div><div class="cs-flow">
+              <article><div>{_icon('database')}<span>Client CRM</span></div><p>Grounded reporting in recorded ecommerce transactions and sales value.</p></article>{_icon('arrow')}<article><div>{_icon('monitor')}<span>GA4 + platforms</span></div><p>Compared site behavior and attributed conversions across Google, Meta, and DSP reporting.</p></article>{_icon('arrow')}<article><div>{_icon('check')}<span>Reconciled decisions</span></div><p>Used validated results to guide optimization, budget discussions, and client recommendations.</p></article>
+            </div></section>
+            <section class="cs-dark"><div class="cs-section-heading"><small>Business impact</small><h2>The campaign exceeded both operating thresholds</h2></div><div class="ecom-impact">
+              <article><strong>235</strong><span>transactions per month</span><small>Approximately 17% above the stated 200-per-month requirement.</small></article>
+              <article><strong>$114</strong><span>revenue per transaction</span><small>Approximately 20% above the stated $95 requirement.</small></article>
+              <article><strong>+208</strong><span>transactions above threshold</span><small>1,408 transactions versus the derived six-month threshold of 1,200.</small></article>
+              <article><strong>+$46.7K</strong><span>revenue above threshold</span><small>$160.7K versus the derived six-month threshold of $114K.</small></article>
+            </div></section>
+            <section class="cs-bottom"><article class="cs-contribution"><div><small>My strategic contribution</small><h2>Connecting media execution to validated ecommerce revenue.</h2></div><div class="cs-capabilities">{contribution_html}</div></article><article class="cs-takeaway">{_icon('growth')}<small>Strategic takeaway</small><p>Full-funnel performance improves when every channel has a defined job and every optimization returns to revenue.</p><div class="cs-next"><p>The strongest result was not a single platform metric. It was a measurement system that connected investment, customer journey, transactions, and business impact.</p></div></article></section>
+            <p class="cs-disclosure">Client identity, dates, and identifying creative details have been intentionally omitted. Campaign totals and channel ROAS reflect the final reconciled results provided for this case study. Monthly averages, threshold comparisons, revenue per transaction, channel revenue share, and the $114K six-month threshold are derived calculations.</p>
+            <a class="cs-back" href="/Case_Studies" target="_self">&larr; Return to all case studies</a>
+          </section>
         </div>
         """),
         unsafe_allow_html=True,
@@ -506,7 +659,9 @@ def render_case_studies(*, configure_page: bool = True) -> None:
         )
     render_portfolio_navigation()
     selected = str(st.query_params.get("case", "")).strip()
-    if selected == "ent-physician":
+    if selected == "ecommerce-roas":
+        _render_ecommerce()
+    elif selected == "ent-physician":
         _render_ent()
     elif selected == "cloud-services-cybersecurity":
         _render_tech()
